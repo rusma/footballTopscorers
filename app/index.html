@@ -22,12 +22,12 @@
 
 <body ng-app="footballTopscorers">
   <div id="container">
-      <div id="league-filter">
+      <div id="leagueFilter">
           <input type="checkbox">
           <input type="checkbox">
       </div>
 
-      <div id="topscorer-info-filter">
+      <div id="topscorerInfoFilter">
         <input type="checkbox">
         <input type="checkbox">
       </div>
@@ -35,7 +35,7 @@
       <div id="wrapper">
 
         <div id="vis_container" ng-controller="topscorersController">
-          <topscorer-bubble-chart></topscorersBubbleChart>
+          <div topscorer-bubble-chart id="bubbleTopscorerChart"></div>
         </div><!--end wrapper controller -->
     </div>
 

@@ -23,9 +23,9 @@ body {
   height: 400px; /*change this to auto*/
 }
 
-div#league-filter {
-  border-left: 1px solid #DFDFE0;;
-  border-top: 1px solid #DFDFE0;;
+div#leagueFilter {
+  border-left: 1px solid #DFDFE0;
+  border-top: 1px solid #DFDFE0;
   border-bottom: 1px solid #DFDFE0;
   width: 40px;
   margin-top: 10%;
@@ -33,20 +33,20 @@ div#league-filter {
   float: left;
 }
 
-  div#league-filter input {
+  div#leagueFilter input {
     width: 40px;
     margin: 5px 0px;
   }
 
-div#topscorer-info-filter {
-  border-left: 1px solid #DFDFE0;;
-  border-top: 1px solid #DFDFE0;;
+div#topscorerInfoFilter {
+  border-left: 1px solid #DFDFE0;
+  border-top: 1px solid #DFDFE0;
   border-right: 1px solid #DFDFE0;
   height: 30px;
   width: 10%;
 }
 
-  div#topscorer-info-filter input {
+  div#topscorerInfoFilter input {
     float:left;
     margin: 7px 20px;
   }
