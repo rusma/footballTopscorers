@@ -4,6 +4,7 @@
 
 angular.module('footballTopscorers.controllers', []).
     controller('topscorersController', function($scope) {
+        console.log('controller');
     	$scope.topscorersList = [
     		{
     			player: {

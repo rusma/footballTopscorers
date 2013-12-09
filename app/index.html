@@ -3,8 +3,13 @@
 <head>
   <meta charset="utf-8">
   <title>Topscorers app</title>
-    <script src="lib/angular/angular.js"></script>
+  <script src="lib/angular/angular.js"></script>
+  <!--[if lt IE 9]><script language="javascript" type="text/javascript" src="lib/jqplot/excanvas.js"></script><![endif]-->
+  <script language="javascript" type="text/javascript" src="lib/jquery.min.js"></script>
+  <script language="javascript" type="text/javascript" src="lib/jqplot/jquery.jqplot.min.js"></script>
+  <script language="javascript" type="text/javascript" src="lib/jqplot/plugins/jqplot.bubbleRenderer.js"></script>
   <script src="lib/angular/angular-route.js"></script>
+
   <script src="js/app.js"></script>
   <script src="js/services.js"></script>
   <script src="js/controllers.js"></script>
@@ -12,26 +17,10 @@
   <script src="js/directives.js"></script>
 
   <link rel="stylesheet" href="css/app.css"/>
+  <link rel="stylesheet" href="css/vendor/jquery.jqplot.css"/>
 </head>
-<body ng-app="footballTopscorers" ng-controller="topscorersController">
-  <table>
-    <thead>
-      <tr>
-        <th colspan="4">Topscorers standings</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="topscorer in topscorersList">
-        <td>{{$index + 1}}</td>
-        <td>
-          <!-- <img src="img/flags/{{driver.Driver.nationality}}.png" /> -->
-          {{topscorer.player.firstname}}&nbsp;{{topscorer.player.lastname}}
-        </td>
-        <td>{{topscorer.teams[0]}}</td>
-        <td>{{topscorer.goals.competition + topscorer.goals.international + topscorer.european}}</td>
 
-      </tr>
-    </tbody>
-  </table>
+<body ng-app="footballTopscorers" ng-controller="topscorersController">
+   <topscorer-bubble-chart></topscorersBubbleChart>
 </body>
 </html>
