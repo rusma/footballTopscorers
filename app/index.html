@@ -6,8 +6,12 @@
   <script src="lib/angular/angular.js"></script>
   <!--[if lt IE 9]><script language="javascript" type="text/javascript" src="lib/jqplot/excanvas.js"></script><![endif]-->
   <script language="javascript" type="text/javascript" src="lib/jquery.min.js"></script>
+  <script language="javascript" type="text/javascript" src="lib/angular-local-storage.js"></script>
   <script language="javascript" type="text/javascript" src="lib/jqplot/jquery.jqplot.min.js"></script>
   <script language="javascript" type="text/javascript" src="lib/jqplot/plugins/jqplot.bubbleRenderer.js"></script>
+  <script type="text/javascript" src="lib/jqplot/plugins/jqplot.barRenderer.min.js"></script>
+  <script type="text/javascript" src="lib/jqplot/plugins/jqplot.categoryAxisRenderer.min.js"></script>
+  <script type="text/javascript" src="lib/jqplot/plugins/jqplot.pointLabels.min.js"></script>
   <script src="lib/angular/angular-route.js"></script>
 
   <script src="js/app.js"></script>
@@ -23,12 +27,16 @@
 <body ng-app="footballTopscorers">
   <div id="container">
       <div id="leagueFilter">
-          <input type="checkbox">
-          <input type="checkbox">
+          <label for="pl">PL</label>
+          <input type="checkbox" name="pl" checked>
+          <label for="cl">CL</label>
+          <input type="checkbox" name="cl">
       </div>
 
       <div id="topscorerInfoFilter">
-        <input type="checkbox">
+        <label for="topscorers">Topscorers's goals</label>
+        <input name="topscorers" type="checkbox" checked>
+        <label for="topscorers">Share of team's goals</label>
         <input type="checkbox">
       </div>
 

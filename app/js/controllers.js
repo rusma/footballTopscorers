@@ -3,35 +3,50 @@
 /* Controllers */
 
 angular.module('footballTopscorers.controllers', []).
-    controller('topscorersController', function($scope) {
-        console.log('controller');
-    	$scope.topscorersList = [
-    		{
-    			player: {
-    				firstname: 'Cristiano',
-    				lastname: 'Ronaldo'
-    			},
-    			goals: {
-    				competition: 14,
-    				international: 4,
-    				european: 6
-    			},
-    			nationality: "Portugueze",
-    			teams:['Manchester United', 'Real Madrid']
-    		},
-    		{
-    			player: {
-    				firstname: 'Karim',
-    				lastname: 'Benzema'
-    			},
-    			goals: {
-    				competition: 4,
-    				international: 2,
-    				european: 2
-    			},
-    			nationality: "French",
-    			teams: ['Olimpique Lyon', 'Real Madrid']
+    controller('topscorersController', function($scope, statsfcApiService, localStorageService) {
 
-    		},
-    	];
-   	});
+        $scope.loadTopscorersPL = function() {
+        	var dfrd = $.Deferred();
+
+        	console.log(localStorageService.get('topscorersPL'));
+        	if(localStorageService.get('localStorageKey') !== null) {
+	        	statsfcApiService.getTopScorersPL().success(function(response){
+		            if(response.length != 0 || response.error != null) {
+		            	localStorageService.add('topscorersPL',response);
+		                dfrd.resolve(response);
+		            }
+		        });
+	        } else {
+	        	var response = localStorageService.get('topscorersPL');
+	        	dfrd.resolve(response);
+
+	        }
+
+	        return dfrd.promise();
+
+
+	    };
+
+	     $scope.loadTopscorersCL = function() {
+        	var dfrd = $.Deferred();
+        	statsfcApiService.getTopScorersCL().success(function(response){
+	            if(response.length != 0 || response.error != null) {
+	                dfrd.resolve(response);
+	            }
+	        });
+
+	        return dfrd.promise();
+	    };
+
+	        $scope.loadTopscorersCLandPL = function() {
+        	var dfrd = $.Deferred();
+        	statsfcApiService.getTopScorersCL().success(function(response){
+	            if(response.length != 0 || response.error != null) {
+	            	var goals =
+	                dfrd.resolve(response);
+	            }
+	        });
+
+	        return dfrd.promise();
+	    }
+});

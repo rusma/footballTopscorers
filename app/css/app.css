@@ -9,7 +9,6 @@ body {
 
 #container {
   width: 80%;
-
   margin: 0 auto;
   margin-top: 5%;
 }
@@ -43,10 +42,10 @@ div#topscorerInfoFilter {
   border-top: 1px solid #DFDFE0;
   border-right: 1px solid #DFDFE0;
   height: 30px;
-  width: 10%;
+  width: 30%;
 }
 
-  div#topscorerInfoFilter input {
+  div#topscorerInfoFilter input label {
     float:left;
     margin: 7px 20px;
   }
