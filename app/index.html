@@ -20,7 +20,25 @@
   <link rel="stylesheet" href="css/vendor/jquery.jqplot.css"/>
 </head>
 
-<body ng-app="footballTopscorers" ng-controller="topscorersController">
-   <topscorer-bubble-chart></topscorersBubbleChart>
+<body ng-app="footballTopscorers">
+  <div id="container">
+      <div id="league-filter">
+          <input type="checkbox">
+          <input type="checkbox">
+      </div>
+
+      <div id="topscorer-info-filter">
+        <input type="checkbox">
+        <input type="checkbox">
+      </div>
+
+      <div id="wrapper">
+
+        <div id="vis_container" ng-controller="topscorersController">
+          <topscorer-bubble-chart></topscorersBubbleChart>
+        </div><!--end wrapper controller -->
+    </div>
+
+  </div>
 </body>
 </html>
