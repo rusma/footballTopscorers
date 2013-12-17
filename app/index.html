@@ -2,26 +2,35 @@
 <html lang="en" ng-app="footballTopscorers">
 <head>
   <meta charset="utf-8">
-  <title>Topscorers app</title>
+  <title>Football Vis</title>
+
   <script src="lib/angular/angular.js"></script>
-  <!--[if lt IE 9]><script language="javascript" type="text/javascript" src="lib/jqplot/excanvas.js"></script><![endif]-->
-  <script language="javascript" type="text/javascript" src="lib/jquery.min.js"></script>
+  <script language="javascript" type="text/javascript" src="lib/jquery.js"></script>
   <script language="javascript" type="text/javascript" src="lib/angular-local-storage.js"></script>
-  <script language="javascript" type="text/javascript" src="lib/jqplot/jquery.jqplot.min.js"></script>
-  <script language="javascript" type="text/javascript" src="lib/jqplot/plugins/jqplot.bubbleRenderer.js"></script>
-  <script type="text/javascript" src="lib/jqplot/plugins/jqplot.barRenderer.min.js"></script>
-  <script type="text/javascript" src="lib/jqplot/plugins/jqplot.categoryAxisRenderer.min.js"></script>
-  <script type="text/javascript" src="lib/jqplot/plugins/jqplot.pointLabels.min.js"></script>
   <script src="lib/angular/angular-route.js"></script>
 
+  <script src="lib/underscore.js"></script>
+  <script src="lib/d3.v3.js"></script>
+  <script src="lib/nvd3/nv.d3.js"></script>
+
   <script src="js/app.js"></script>
-  <script src="js/services.js"></script>
-  <script src="js/controllers.js"></script>
-  <script src="js/filters.js"></script>
-  <script src="js/directives.js"></script>
+  <script src="js/services/services.js"></script>
+  <script src="js/controllers/controllers.js"></script>
+  <script src="js/filters/filters.js"></script>
+  <script src="js/directives/directives.js"></script>
 
   <link rel="stylesheet" href="css/app.css"/>
-  <link rel="stylesheet" href="css/vendor/jquery.jqplot.css"/>
+
+  <!-- PRODUCTION
+  <script src="build/js/production.min.js"></script>
+  <link rel="stylesheet" href="build/css/build.min.css"/>
+
+  <!--load angular logic seperately because uglifying of this causes errors--><!--
+  <script src="js/services/services.js"></script>
+  <script src="js/controllers/controllers.js"></script>
+  <script src="js/filters/filters.js"></script>
+  <script src="js/directives/directives.js"></script>
+  -->
 </head>
 
 <body ng-app="footballTopscorers">
@@ -32,7 +41,6 @@
           <label for="cl">CL</label>
           <input type="checkbox" name="cl">
       </div>
-
       <div id="topscorerInfoFilter">
         <label for="topscorers">Topscorers's goals</label>
         <input name="topscorers" type="checkbox" checked>
