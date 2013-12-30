@@ -9,23 +9,21 @@ angular.module('footballTopscorers.services', []).
   factory('statsfcApiService', function($http, $cacheFactory) {
   	var statsfcApi = {};
 
-  	statsfcApi.getTopScorersPL = function() {
+  	statsfcApi.getTablePL = function() {
   		return $http({
   			method: 'GET',
-  			url: 'https://willjw-statsfc-competitions.p.mashape.com/top-scorers.json?key=free&competition=premier-league&year=2013%2F2014',
+  			url:'https://willjw-statsfc-competitions.p.mashape.com/table.json?key=free&competition=premier-league&year=2013%2F2014',
   			headers: {"X-Mashape-Authorization": "kFv3KUMDpoxt98Rh6u9ytW5IEpEWdKqQ"}
   		});
   	};
 
-    statsfcApi.getTopScorersCL = function() {
+    statsfcApi.getMatchDataForTeam = function(team, competition) {
       return $http({
         method: 'GET',
-        url: 'https://willjw-statsfc-competitions.p.mashape.com/top-scorers.json?key=free&competition=champions-league&year=2013%2F2014',
+        url: 'https://willjw-statsfc-competitions.p.mashape.com/results.json?key=free&competition=' + competition + '&team=' + team + '',
         headers: {"X-Mashape-Authorization": "kFv3KUMDpoxt98Rh6u9ytW5IEpEWdKqQ"}
       });
     };
-
-
 
     // if(typeof $httpDefaultCache.get("topscorersPL") === 'undefined') {
     //   console.log('in here');

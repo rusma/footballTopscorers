@@ -1,24 +1,374 @@
 0 info it worked if it ends with ok
 1 verbose cli [ 'C:\\Program Files (x86)\\nodejs\\\\node.exe',
 1 verbose cli   'C:\\Program Files (x86)\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
-1 verbose cli   'install' ]
+1 verbose cli   'install',
+1 verbose cli   'grunt-contrib-cssmin' ]
 2 info using npm@1.3.14
 3 info using node@v0.10.22
 4 verbose node symlink C:\Program Files (x86)\nodejs\\node.exe
-5 error install Couldn't read dependencies
-6 error Failed to parse json
-6 error Unexpected token }
-7 error File: E:\Drive\Development\angular\football_vis\package.json
-8 error Failed to parse package.json data.
-8 error package.json must be actual JSON, not just JavaScript.
-8 error
-8 error This is not a bug in npm.
-8 error Tell the package author to fix their package.json file. JSON.parse
-9 error System Windows_NT 6.2.9200
-10 error command "C:\\Program Files (x86)\\nodejs\\\\node.exe" "C:\\Program Files (x86)\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install"
-11 error cwd E:\Drive\Development\angular\football_vis
-12 error node -v v0.10.22
-13 error npm -v 1.3.14
-14 error file E:\Drive\Development\angular\football_vis\package.json
-15 error code EJSONPARSE
-16 verbose exit [ 1, true ]
+5 warn package.json football-vis@0.1.0 No repository field.
+6 verbose readDependencies using package.json deps
+7 verbose cache add [ 'grunt-contrib-cssmin', null ]
+8 verbose cache add name=undefined spec="grunt-contrib-cssmin" args=["grunt-contrib-cssmin",null]
+9 verbose parsed url { protocol: null,
+9 verbose parsed url   slashes: null,
+9 verbose parsed url   auth: null,
+9 verbose parsed url   host: null,
+9 verbose parsed url   port: null,
+9 verbose parsed url   hostname: null,
+9 verbose parsed url   hash: null,
+9 verbose parsed url   search: null,
+9 verbose parsed url   query: null,
+9 verbose parsed url   pathname: 'grunt-contrib-cssmin',
+9 verbose parsed url   path: 'grunt-contrib-cssmin',
+9 verbose parsed url   href: 'grunt-contrib-cssmin' }
+10 silly lockFile 82d3c5ce-grunt-contrib-cssmin grunt-contrib-cssmin
+11 verbose lock grunt-contrib-cssmin C:\Users\Pim Meijer\AppData\Roaming\npm-cache\82d3c5ce-grunt-contrib-cssmin.lock
+12 silly lockFile 82d3c5ce-grunt-contrib-cssmin grunt-contrib-cssmin
+13 silly lockFile 82d3c5ce-grunt-contrib-cssmin grunt-contrib-cssmin
+14 verbose addNamed [ 'grunt-contrib-cssmin', '' ]
+15 verbose addNamed [ null, '*' ]
+16 silly lockFile b94ab2cf-grunt-contrib-cssmin grunt-contrib-cssmin@
+17 verbose lock grunt-contrib-cssmin@ C:\Users\Pim Meijer\AppData\Roaming\npm-cache\b94ab2cf-grunt-contrib-cssmin.lock
+18 silly addNameRange { name: 'grunt-contrib-cssmin', range: '*', hasData: false }
+19 verbose url raw grunt-contrib-cssmin
+20 verbose url resolving [ 'https://registry.npmjs.org/', './grunt-contrib-cssmin' ]
+21 verbose url resolved https://registry.npmjs.org/grunt-contrib-cssmin
+22 info trying registry request attempt 1 at 15:32:36
+23 verbose etag "8XE2HB4L9PXCUXG4V6FBOAQJL"
+24 http GET https://registry.npmjs.org/grunt-contrib-cssmin
+25 http 304 https://registry.npmjs.org/grunt-contrib-cssmin
+26 silly registry.get cb [ 304,
+26 silly registry.get   { server: 'CouchDB/1.5.0 (Erlang OTP/R15B03)',
+26 silly registry.get     etag: '"8XE2HB4L9PXCUXG4V6FBOAQJL"',
+26 silly registry.get     date: 'Thu, 19 Dec 2013 14:32:37 GMT',
+26 silly registry.get     'content-length': '0' } ]
+27 verbose etag grunt-contrib-cssmin from cache
+28 silly addNameRange number 2 { name: 'grunt-contrib-cssmin', range: '*', hasData: true }
+29 silly addNameRange versions [ 'grunt-contrib-cssmin',
+29 silly addNameRange   [ '0.4.0',
+29 silly addNameRange     '0.4.1',
+29 silly addNameRange     '0.4.2',
+29 silly addNameRange     '0.5.0',
+29 silly addNameRange     '0.6.0',
+29 silly addNameRange     '0.6.1',
+29 silly addNameRange     '0.6.2',
+29 silly addNameRange     '0.7.0' ] ]
+30 verbose addNamed [ 'grunt-contrib-cssmin', '0.7.0' ]
+31 verbose addNamed [ '0.7.0', '0.7.0' ]
+32 silly lockFile e32996d4-grunt-contrib-cssmin-0-7-0 grunt-contrib-cssmin@0.7.0
+33 verbose lock grunt-contrib-cssmin@0.7.0 C:\Users\Pim Meijer\AppData\Roaming\npm-cache\e32996d4-grunt-contrib-cssmin-0-7-0.lock
+34 silly lockFile e32996d4-grunt-contrib-cssmin-0-7-0 grunt-contrib-cssmin@0.7.0
+35 silly lockFile e32996d4-grunt-contrib-cssmin-0-7-0 grunt-contrib-cssmin@0.7.0
+36 silly lockFile b94ab2cf-grunt-contrib-cssmin grunt-contrib-cssmin@
+37 silly lockFile b94ab2cf-grunt-contrib-cssmin grunt-contrib-cssmin@
+38 silly resolved [ { name: 'grunt-contrib-cssmin',
+38 silly resolved     description: 'Compress CSS files.',
+38 silly resolved     version: '0.7.0',
+38 silly resolved     homepage: 'https://github.com/gruntjs/grunt-contrib-cssmin',
+38 silly resolved     author: { name: 'Grunt Team', url: 'http://gruntjs.com/' },
+38 silly resolved     repository:
+38 silly resolved      { type: 'git',
+38 silly resolved        url: 'git://github.com/gruntjs/grunt-contrib-cssmin.git' },
+38 silly resolved     bugs: { url: 'https://github.com/gruntjs/grunt-contrib-cssmin/issues' },
+38 silly resolved     licenses: [ [Object] ],
+38 silly resolved     engines: { node: '>= 0.8.0' },
+38 silly resolved     scripts: { test: 'grunt test' },
+38 silly resolved     dependencies: { 'clean-css': '~2.0.0', 'grunt-lib-contrib': '~0.6.0' },
+38 silly resolved     devDependencies:
+38 silly resolved      { 'grunt-contrib-jshint': '~0.6.4',
+38 silly resolved        'grunt-contrib-nodeunit': '~0.2.1',
+38 silly resolved        'grunt-contrib-clean': '~0.5.0',
+38 silly resolved        'grunt-contrib-internal': '~0.4.6',
+38 silly resolved        grunt: '~0.4.1' },
+38 silly resolved     peerDependencies: { grunt: '~0.4.1' },
+38 silly resolved     keywords: [ 'gruntplugin' ],
+38 silly resolved     contributors: [ [Object], [Object], [Object], [Object], [Object], [Object] ],
+38 silly resolved     readme: '# grunt-contrib-cssmin v0.6.2 [![Build Status](https://travis-ci.org/gruntjs/grunt-contrib-cssmin.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-cssmin)\n\n> Compress CSS files.\n\n\n\n## Getting Started\nThis plugin requires Grunt `~0.4.0`\n\nIf you haven\'t used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you\'re familiar with that process, you may install this plugin with this command:\n\n```shell\nnpm install grunt-contrib-cssmin --save-dev\n```\n\nOnce the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:\n\n```js\ngrunt.loadNpmTasks(\'grunt-contrib-cssmin\');\n```\n\n*This plugin was designed to work with Grunt 0.4.x. If you\'re still using grunt v0.3.x it\'s strongly recommended that [you upgrade](http://gruntjs.com/upgrading-from-0.3-to-0.4), but in case you can\'t please use [v0.3.2](https://github.com/gruntjs/grunt-contrib-cssmin/tree/grunt-0.3-stable).*\n\n\n\n## Cssmin task\n_Run this task with the `grunt cssmin` command._\n\nTask targets, files and options may be specified according to the grunt [Configuring tasks](http://gruntjs.com/configuring-tasks) guide.\n\nFiles are compressed with [clean-css](https://github.com/GoalSmashers/clean-css).\n### Options\n\n#### banner\n\nType: `String`  \nDefault: `null`\n\nPrefix the compressed source with the given banner, with a linebreak inbetween.\n\n#### keepSpecialComments\n\nType: `String` `Number`  \nDefault: `\'*\'`\n\nTo keep or remove special comments, exposing the underlying option from [clean-css](https://github.com/GoalSmashers/clean-css).. `\'*\'` for keeping all (default), `1` for keeping first one, `0` for removing all.\n\n#### report\nChoices: `false`, `\'min\'`, `\'gzip\'`  \nDefault: `false`\n\nEither do not report anything, report only minification result, or report minification and gzip results.\nThis is useful to see exactly how well clean-css is performing but using `\'gzip\'` will make the task take 5-10x longer to complete.\n\nExample ouput using `\'gzip\'`:\n\n```\nOriginal: 198444 bytes.\nMinified: 101615 bytes.\nGzipped:  20084 bytes.\n```\n\n### Usage Examples\n\n#### Combine two files into one output file\n\n```js\ncssmin: {\n  combine: {\n    files: {\n      \'path/to/output.css\': [\'path/to/input_one.css\', \'path/to/input_two.css\']\n    }\n  }\n}\n```\n\n#### Add a banner\n```js\ncssmin: {\n  add_banner: {\n    options: {\n      banner: \'/* My minified css file */\'\n    },\n    files: {\n      \'path/to/output.css\': [\'path/to/**/*.css\']\n    }\n  }\n}\n```\n\n#### Minify all contents of a release directory and add a `.min.css` extension\n```js\ncssmin: {\n  minify: {\n    expand: true,\n    cwd: \'release/css/\',\n    src: [\'*.css\', \'!*.min.css\'],\n    dest: \'release/css/\',\n    ext: \'.min.css\'\n  }\n}\n```\n\n\n## Release History\n\n * 2013-09-14   v0.6.2   Support relative URLs via clean-css ~1.1.1.\n * 2013-05-25   v0.6.1   Support import in-lining vis clean-css ~1.0.4.\n * 2013-04-05   v0.6.0   Update clean-css dependency to ~1.0.0\n * 2013-03-14   v0.5.0   Support for \'report\' option (false by default)\n * 2013-03-10   v0.4.2   Add banner option Support clean-css keepSpecialComments\n * 2013-02-17   v0.4.1   Update clean-css dependency to ~0.10.0\n * 2013-02-15   v0.4.0   First official release for Grunt 0.4.0.\n * 2013-01-23   v0.4.0rc7   Updating grunt/gruntplugin dependencies to rc7. Changing in-development grunt/gruntplugin dependency versions from tilde version ranges to specific versions.\n * 2013-01-09   v0.4.0rc5   Updating to work with grunt v0.4.0rc5. Switching to this.files api.\n * 2012-11-01   v0.3.2   Update clean-css dep.\n * 2012-10-12   v0.3.1   Rename grunt-contrib-lib dep to grunt-lib-contrib.\n * 2012-09-23   v0.3.0   Options no longer accepted from global config key.\n * 2012-09-10   v0.2.0   Refactored from grunt-contrib into individual repo.\n\n---\n\nTask submitted by [Tim Branyen](http://goingslowly.com/)\n\n*This file was generated on Sat Oct 05 2013 19:35:29.*\n',
+38 silly resolved     readmeFilename: 'README.md',
+38 silly resolved     _id: 'grunt-contrib-cssmin@0.7.0',
+38 silly resolved     _from: 'grunt-contrib-cssmin@' } ]
+39 info install grunt-contrib-cssmin@0.7.0 into E:\Development\javascript\football_vis
+40 info installOne grunt-contrib-cssmin@0.7.0
+41 info E:\Development\javascript\football_vis\node_modules\grunt-contrib-cssmin unbuild
+42 verbose tar unpack C:\Users\Pim Meijer\AppData\Roaming\npm-cache\grunt-contrib-cssmin\0.7.0\package.tgz
+43 silly lockFile b8520516-ode-modules-grunt-contrib-cssmin tar://E:\Development\javascript\football_vis\node_modules\grunt-contrib-cssmin
+44 verbose lock tar://E:\Development\javascript\football_vis\node_modules\grunt-contrib-cssmin C:\Users\Pim Meijer\AppData\Roaming\npm-cache\b8520516-ode-modules-grunt-contrib-cssmin.lock
+45 silly lockFile 2b2e4430-contrib-cssmin-0-7-0-package-tgz tar://C:\Users\Pim Meijer\AppData\Roaming\npm-cache\grunt-contrib-cssmin\0.7.0\package.tgz
+46 verbose lock tar://C:\Users\Pim Meijer\AppData\Roaming\npm-cache\grunt-contrib-cssmin\0.7.0\package.tgz C:\Users\Pim Meijer\AppData\Roaming\npm-cache\2b2e4430-contrib-cssmin-0-7-0-package-tgz.lock
+47 silly gunzTarPerm modes [ '755', '644' ]
+48 silly gunzTarPerm extractEntry package.json
+49 silly gunzTarPerm modified mode [ 'package.json', 438, 420 ]
+50 silly gunzTarPerm extractEntry .npmignore
+51 silly gunzTarPerm modified mode [ '.npmignore', 438, 420 ]
+52 silly gunzTarPerm extractEntry README.md
+53 silly gunzTarPerm modified mode [ 'README.md', 438, 420 ]
+54 silly gunzTarPerm extractEntry Gruntfile.js
+55 silly gunzTarPerm modified mode [ 'Gruntfile.js', 438, 420 ]
+56 silly gunzTarPerm extractEntry CONTRIBUTING.md
+57 silly gunzTarPerm modified mode [ 'CONTRIBUTING.md', 438, 420 ]
+58 silly gunzTarPerm extractEntry AUTHORS
+59 silly gunzTarPerm modified mode [ 'AUTHORS', 438, 420 ]
+60 silly gunzTarPerm extractEntry CHANGELOG
+61 silly gunzTarPerm modified mode [ 'CHANGELOG', 438, 420 ]
+62 silly gunzTarPerm extractEntry .gitattributes
+63 silly gunzTarPerm modified mode [ '.gitattributes', 438, 420 ]
+64 silly gunzTarPerm extractEntry docs/cssmin-examples.md
+65 silly gunzTarPerm modified mode [ 'docs/cssmin-examples.md', 438, 420 ]
+66 silly gunzTarPerm extractEntry docs/cssmin-options.md
+67 silly gunzTarPerm modified mode [ 'docs/cssmin-options.md', 438, 420 ]
+68 silly gunzTarPerm extractEntry docs/cssmin-overview.md
+69 silly gunzTarPerm modified mode [ 'docs/cssmin-overview.md', 438, 420 ]
+70 silly gunzTarPerm extractEntry docs/overview.md
+71 silly gunzTarPerm modified mode [ 'docs/overview.md', 438, 420 ]
+72 silly gunzTarPerm extractEntry .jshintrc
+73 silly gunzTarPerm modified mode [ '.jshintrc', 438, 420 ]
+74 silly gunzTarPerm extractEntry LICENSE-MIT
+75 silly gunzTarPerm modified mode [ 'LICENSE-MIT', 438, 420 ]
+76 silly gunzTarPerm extractEntry .editorconfig
+77 silly gunzTarPerm modified mode [ '.editorconfig', 438, 420 ]
+78 silly gunzTarPerm extractEntry .travis.yml
+79 silly gunzTarPerm modified mode [ '.travis.yml', 438, 420 ]
+80 silly gunzTarPerm extractEntry tasks/cssmin.js
+81 silly gunzTarPerm modified mode [ 'tasks/cssmin.js', 438, 420 ]
+82 silly gunzTarPerm extractEntry test/cssmin_test.js
+83 silly gunzTarPerm modified mode [ 'test/cssmin_test.js', 438, 420 ]
+84 silly gunzTarPerm extractEntry test/expected/inline_import.css
+85 silly gunzTarPerm modified mode [ 'test/expected/inline_import.css', 438, 420 ]
+86 silly gunzTarPerm extractEntry test/expected/input_bannered.css
+87 silly gunzTarPerm modified mode [ 'test/expected/input_bannered.css', 438, 420 ]
+88 silly gunzTarPerm extractEntry test/expected/style.css
+89 silly gunzTarPerm modified mode [ 'test/expected/style.css', 438, 420 ]
+90 silly gunzTarPerm extractEntry test/expected/with-banner.css
+91 silly gunzTarPerm modified mode [ 'test/expected/with-banner.css', 438, 420 ]
+92 silly gunzTarPerm extractEntry test/fixtures/inner/input_inline_import.css
+93 silly gunzTarPerm modified mode [ 'test/fixtures/inner/input_inline_import.css', 438, 420 ]
+94 silly gunzTarPerm extractEntry test/fixtures/inner/input_inline_import2.css
+95 silly gunzTarPerm modified mode [ 'test/fixtures/inner/input_inline_import2.css', 438, 420 ]
+96 silly gunzTarPerm extractEntry test/fixtures/input_bannered.css
+97 silly gunzTarPerm modified mode [ 'test/fixtures/input_bannered.css', 438, 420 ]
+98 silly gunzTarPerm extractEntry test/fixtures/input_inline_import.css
+99 silly gunzTarPerm modified mode [ 'test/fixtures/input_inline_import.css', 438, 420 ]
+100 silly gunzTarPerm extractEntry test/fixtures/input_inline_import2.css
+101 silly gunzTarPerm modified mode [ 'test/fixtures/input_inline_import2.css', 438, 420 ]
+102 silly gunzTarPerm extractEntry test/fixtures/input_one.css
+103 silly gunzTarPerm modified mode [ 'test/fixtures/input_one.css', 438, 420 ]
+104 silly gunzTarPerm extractEntry test/fixtures/input_two.css
+105 silly gunzTarPerm modified mode [ 'test/fixtures/input_two.css', 438, 420 ]
+106 silly lockFile b8520516-ode-modules-grunt-contrib-cssmin tar://E:\Development\javascript\football_vis\node_modules\grunt-contrib-cssmin
+107 silly lockFile b8520516-ode-modules-grunt-contrib-cssmin tar://E:\Development\javascript\football_vis\node_modules\grunt-contrib-cssmin
+108 silly lockFile 2b2e4430-contrib-cssmin-0-7-0-package-tgz tar://C:\Users\Pim Meijer\AppData\Roaming\npm-cache\grunt-contrib-cssmin\0.7.0\package.tgz
+109 silly lockFile 2b2e4430-contrib-cssmin-0-7-0-package-tgz tar://C:\Users\Pim Meijer\AppData\Roaming\npm-cache\grunt-contrib-cssmin\0.7.0\package.tgz
+110 info preinstall grunt-contrib-cssmin@0.7.0
+111 verbose readDependencies using package.json deps
+112 verbose readDependencies using package.json deps
+113 verbose cache add [ 'clean-css@~2.0.0', null ]
+114 verbose cache add name=undefined spec="clean-css@~2.0.0" args=["clean-css@~2.0.0",null]
+115 verbose parsed url { protocol: null,
+115 verbose parsed url   slashes: null,
+115 verbose parsed url   auth: null,
+115 verbose parsed url   host: null,
+115 verbose parsed url   port: null,
+115 verbose parsed url   hostname: null,
+115 verbose parsed url   hash: null,
+115 verbose parsed url   search: null,
+115 verbose parsed url   query: null,
+115 verbose parsed url   pathname: 'clean-css@~2.0.0',
+115 verbose parsed url   path: 'clean-css@~2.0.0',
+115 verbose parsed url   href: 'clean-css@~2.0.0' }
+116 verbose cache add name="clean-css" spec="~2.0.0" args=["clean-css","~2.0.0"]
+117 verbose parsed url { protocol: null,
+117 verbose parsed url   slashes: null,
+117 verbose parsed url   auth: null,
+117 verbose parsed url   host: null,
+117 verbose parsed url   port: null,
+117 verbose parsed url   hostname: null,
+117 verbose parsed url   hash: null,
+117 verbose parsed url   search: null,
+117 verbose parsed url   query: null,
+117 verbose parsed url   pathname: '~2.0.0',
+117 verbose parsed url   path: '~2.0.0',
+117 verbose parsed url   href: '~2.0.0' }
+118 verbose addNamed [ 'clean-css', '~2.0.0' ]
+119 verbose addNamed [ null, '>=2.0.0-0 <2.1.0-0' ]
+120 silly lockFile 434cf0e0-clean-css-2-0-0 clean-css@~2.0.0
+121 verbose lock clean-css@~2.0.0 C:\Users\Pim Meijer\AppData\Roaming\npm-cache\434cf0e0-clean-css-2-0-0.lock
+122 verbose cache add [ 'grunt-lib-contrib@~0.6.0', null ]
+123 verbose cache add name=undefined spec="grunt-lib-contrib@~0.6.0" args=["grunt-lib-contrib@~0.6.0",null]
+124 verbose parsed url { protocol: null,
+124 verbose parsed url   slashes: null,
+124 verbose parsed url   auth: null,
+124 verbose parsed url   host: null,
+124 verbose parsed url   port: null,
+124 verbose parsed url   hostname: null,
+124 verbose parsed url   hash: null,
+124 verbose parsed url   search: null,
+124 verbose parsed url   query: null,
+124 verbose parsed url   pathname: 'grunt-lib-contrib@~0.6.0',
+124 verbose parsed url   path: 'grunt-lib-contrib@~0.6.0',
+124 verbose parsed url   href: 'grunt-lib-contrib@~0.6.0' }
+125 verbose cache add name="grunt-lib-contrib" spec="~0.6.0" args=["grunt-lib-contrib","~0.6.0"]
+126 verbose parsed url { protocol: null,
+126 verbose parsed url   slashes: null,
+126 verbose parsed url   auth: null,
+126 verbose parsed url   host: null,
+126 verbose parsed url   port: null,
+126 verbose parsed url   hostname: null,
+126 verbose parsed url   hash: null,
+126 verbose parsed url   search: null,
+126 verbose parsed url   query: null,
+126 verbose parsed url   pathname: '~0.6.0',
+126 verbose parsed url   path: '~0.6.0',
+126 verbose parsed url   href: '~0.6.0' }
+127 verbose addNamed [ 'grunt-lib-contrib', '~0.6.0' ]
+128 verbose addNamed [ null, '>=0.6.0-0 <0.7.0-0' ]
+129 silly lockFile 572493f7-grunt-lib-contrib-0-6-0 grunt-lib-contrib@~0.6.0
+130 verbose lock grunt-lib-contrib@~0.6.0 C:\Users\Pim Meijer\AppData\Roaming\npm-cache\572493f7-grunt-lib-contrib-0-6-0.lock
+131 silly addNameRange { name: 'clean-css',
+131 silly addNameRange   range: '>=2.0.0-0 <2.1.0-0',
+131 silly addNameRange   hasData: false }
+132 verbose url raw clean-css
+133 verbose url resolving [ 'https://registry.npmjs.org/', './clean-css' ]
+134 verbose url resolved https://registry.npmjs.org/clean-css
+135 info trying registry request attempt 1 at 15:32:38
+136 verbose etag "7S54GA2U94LUG85EOW34935HA"
+137 http GET https://registry.npmjs.org/clean-css
+138 silly addNameRange { name: 'grunt-lib-contrib',
+138 silly addNameRange   range: '>=0.6.0-0 <0.7.0-0',
+138 silly addNameRange   hasData: false }
+139 verbose url raw grunt-lib-contrib
+140 verbose url resolving [ 'https://registry.npmjs.org/', './grunt-lib-contrib' ]
+141 verbose url resolved https://registry.npmjs.org/grunt-lib-contrib
+142 info trying registry request attempt 1 at 15:32:38
+143 verbose etag "D6BSQXEGBAYTJSFYJL80YL9H6"
+144 http GET https://registry.npmjs.org/grunt-lib-contrib
+145 http 304 https://registry.npmjs.org/grunt-lib-contrib
+146 silly registry.get cb [ 304,
+146 silly registry.get   { server: 'CouchDB/1.5.0 (Erlang OTP/R15B03)',
+146 silly registry.get     etag: '"D6BSQXEGBAYTJSFYJL80YL9H6"',
+146 silly registry.get     date: 'Thu, 19 Dec 2013 14:32:38 GMT',
+146 silly registry.get     'content-length': '0' } ]
+147 verbose etag grunt-lib-contrib from cache
+148 http 304 https://registry.npmjs.org/clean-css
+149 silly registry.get cb [ 304,
+149 silly registry.get   { server: 'CouchDB/1.5.0 (Erlang OTP/R15B03)',
+149 silly registry.get     etag: '"7S54GA2U94LUG85EOW34935HA"',
+149 silly registry.get     date: 'Thu, 19 Dec 2013 14:32:39 GMT',
+149 silly registry.get     'content-length': '0' } ]
+150 verbose etag clean-css from cache
+151 silly addNameRange number 2 { name: 'grunt-lib-contrib',
+151 silly addNameRange   range: '>=0.6.0-0 <0.7.0-0',
+151 silly addNameRange   hasData: true }
+152 silly addNameRange versions [ 'grunt-lib-contrib',
+152 silly addNameRange   [ '0.3.0',
+152 silly addNameRange     '0.3.1',
+152 silly addNameRange     '0.4.0',
+152 silly addNameRange     '0.5.1',
+152 silly addNameRange     '0.5.2',
+152 silly addNameRange     '0.5.3',
+152 silly addNameRange     '0.6.0',
+152 silly addNameRange     '0.6.1' ] ]
+153 verbose addNamed [ 'grunt-lib-contrib', '0.6.1' ]
+154 verbose addNamed [ '0.6.1', '0.6.1' ]
+155 silly lockFile 0ef65a81-grunt-lib-contrib-0-6-1 grunt-lib-contrib@0.6.1
+156 verbose lock grunt-lib-contrib@0.6.1 C:\Users\Pim Meijer\AppData\Roaming\npm-cache\0ef65a81-grunt-lib-contrib-0-6-1.lock
+157 silly addNameRange number 2 { name: 'clean-css', range: '>=2.0.0-0 <2.1.0-0', hasData: true }
+158 silly addNameRange versions [ 'clean-css',
+158 silly addNameRange   [ '0.1.0',
+158 silly addNameRange     '0.2.0',
+158 silly addNameRange     '0.2.1',
+158 silly addNameRange     '0.2.2',
+158 silly addNameRange     '0.2.3',
+158 silly addNameRange     '0.2.4',
+158 silly addNameRange     '0.2.5',
+158 silly addNameRange     '0.2.6',
+158 silly addNameRange     '0.3.0',
+158 silly addNameRange     '0.3.1',
+158 silly addNameRange     '0.3.2',
+158 silly addNameRange     '0.3.3',
+158 silly addNameRange     '0.4.0',
+158 silly addNameRange     '0.4.1',
+158 silly addNameRange     '0.4.2',
+158 silly addNameRange     '0.5.0',
+158 silly addNameRange     '0.6.0',
+158 silly addNameRange     '0.7.0',
+158 silly addNameRange     '0.8.0',
+158 silly addNameRange     '0.8.1',
+158 silly addNameRange     '0.8.2',
+158 silly addNameRange     '0.8.3',
+158 silly addNameRange     '0.9.0',
+158 silly addNameRange     '0.9.1',
+158 silly addNameRange     '0.10.0',
+158 silly addNameRange     '0.10.1',
+158 silly addNameRange     '0.10.2',
+158 silly addNameRange     '1.0.0',
+158 silly addNameRange     '1.0.1',
+158 silly addNameRange     '1.0.2',
+158 silly addNameRange     '1.0.3',
+158 silly addNameRange     '1.0.4',
+158 silly addNameRange     '1.0.5',
+158 silly addNameRange     '1.0.6',
+158 silly addNameRange     '1.0.7',
+158 silly addNameRange     '1.0.8',
+158 silly addNameRange     '1.0.9',
+158 silly addNameRange     '1.0.10',
+158 silly addNameRange     '1.0.11',
+158 silly addNameRange     '1.0.12',
+158 silly addNameRange     '1.1.0',
+158 silly addNameRange     '1.1.1',
+158 silly addNameRange     '1.1.2',
+158 silly addNameRange     '1.1.3',
+158 silly addNameRange     '1.1.4',
+158 silly addNameRange     '1.1.5',
+158 silly addNameRange     '1.1.6',
+158 silly addNameRange     '1.1.7',
+158 silly addNameRange     '2.0.0',
+158 silly addNameRange     '2.0.1',
+158 silly addNameRange     '2.0.2',
+158 silly addNameRange     '2.0.3',
+158 silly addNameRange     '2.0.4' ] ]
+159 verbose addNamed [ 'clean-css', '2.0.4' ]
+160 verbose addNamed [ '2.0.4', '2.0.4' ]
+161 silly lockFile a1d2fb6f-clean-css-2-0-4 clean-css@2.0.4
+162 verbose lock clean-css@2.0.4 C:\Users\Pim Meijer\AppData\Roaming\npm-cache\a1d2fb6f-clean-css-2-0-4.lock
+163 silly lockFile 79b7684a-rg-clean-css-clean-css-2-0-4-tgz https://registry.npmjs.org/clean-css/-/clean-css-2.0.4.tgz
+164 verbose lock https://registry.npmjs.org/clean-css/-/clean-css-2.0.4.tgz C:\Users\Pim Meijer\AppData\Roaming\npm-cache\79b7684a-rg-clean-css-clean-css-2-0-4-tgz.lock
+165 verbose addRemoteTarball [ 'https://registry.npmjs.org/clean-css/-/clean-css-2.0.4.tgz',
+165 verbose addRemoteTarball   '8a2199178ed29827813cb41531fae998054ec61f' ]
+166 silly lockFile 0ef65a81-grunt-lib-contrib-0-6-1 grunt-lib-contrib@0.6.1
+167 silly lockFile 0ef65a81-grunt-lib-contrib-0-6-1 grunt-lib-contrib@0.6.1
+168 info retry fetch attempt 1 at 15:32:39
+169 verbose fetch to= C:\Users\PIMMEI~1\AppData\Local\Temp\npm-5332-7JlT-mOV\1387463559378-0.7072359728626907\tmp.tgz
+170 silly lockFile 572493f7-grunt-lib-contrib-0-6-0 grunt-lib-contrib@~0.6.0
+171 silly lockFile 572493f7-grunt-lib-contrib-0-6-0 grunt-lib-contrib@~0.6.0
+172 http GET https://registry.npmjs.org/clean-css/-/clean-css-2.0.4.tgz
+173 http 404 https://registry.npmjs.org/clean-css/-/clean-css-2.0.4.tgz
+174 error fetch failed https://registry.npmjs.org/clean-css/-/clean-css-2.0.4.tgz
+175 silly lockFile 79b7684a-rg-clean-css-clean-css-2-0-4-tgz https://registry.npmjs.org/clean-css/-/clean-css-2.0.4.tgz
+176 silly lockFile 79b7684a-rg-clean-css-clean-css-2-0-4-tgz https://registry.npmjs.org/clean-css/-/clean-css-2.0.4.tgz
+177 silly lockFile a1d2fb6f-clean-css-2-0-4 clean-css@2.0.4
+178 silly lockFile a1d2fb6f-clean-css-2-0-4 clean-css@2.0.4
+179 silly lockFile 434cf0e0-clean-css-2-0-0 clean-css@~2.0.0
+180 silly lockFile 434cf0e0-clean-css-2-0-0 clean-css@~2.0.0
+181 verbose about to build E:\Development\javascript\football_vis\node_modules\grunt-contrib-cssmin
+182 info E:\Development\javascript\football_vis\node_modules\grunt-contrib-cssmin unbuild
+183 info preuninstall grunt-contrib-cssmin@0.7.0
+184 info uninstall grunt-contrib-cssmin@0.7.0
+185 verbose true,E:\Development\javascript\football_vis\node_modules,E:\Development\javascript\football_vis\node_modules unbuild grunt-contrib-cssmin@0.7.0
+186 info postuninstall grunt-contrib-cssmin@0.7.0
+187 error Error: 404 Not Found
+187 error     at WriteStream.<anonymous> (C:\Program Files (x86)\nodejs\node_modules\npm\lib\utils\fetch.js:57:12)
+187 error     at WriteStream.EventEmitter.emit (events.js:117:20)
+187 error     at fs.js:1596:14
+187 error     at C:\Program Files (x86)\nodejs\node_modules\npm\node_modules\graceful-fs\graceful-fs.js:103:5
+187 error     at Object.oncomplete (fs.js:107:15)
+188 error If you need help, you may report this log at:
+188 error     <http://github.com/isaacs/npm/issues>
+188 error or email it to:
+188 error     <npm-@googlegroups.com>
+189 error System Windows_NT 6.2.9200
+190 error command "C:\\Program Files (x86)\\nodejs\\\\node.exe" "C:\\Program Files (x86)\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "grunt-contrib-cssmin"
+191 error cwd E:\Development\javascript\football_vis
+192 error node -v v0.10.22
+193 error npm -v 1.3.14
+194 verbose exit [ 1, true ]

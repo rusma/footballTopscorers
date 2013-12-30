@@ -33,8 +33,7 @@ nv.models.lineWithFocusChart = function() {
       }
     , noData = "No Data Available."
     , dispatch = d3.dispatch('tooltipShow', 'tooltipHide', 'brush')
-    , transitionDuration = 250
-    ;
+    , transitionDuration = 250;
 
   lines
     .clipEdge(true)
@@ -252,7 +251,7 @@ nv.models.lineWithFocusChart = function() {
         .on('brush', function() {
             //When brushing, turn off transitions because chart needs to change immediately.
             var oldTransition = chart.transitionDuration();
-            chart.transitionDuration(0); 
+            chart.transitionDuration(0);
             onBrush();
             chart.transitionDuration(oldTransition);
         });
@@ -321,7 +320,7 @@ nv.models.lineWithFocusChart = function() {
       // Event Handling/Dispatching (in chart's scope)
       //------------------------------------------------------------
 
-      legend.dispatch.on('stateChange', function(newState) { 
+      legend.dispatch.on('stateChange', function(newState) {
         chart.update();
       });
 
@@ -454,7 +453,7 @@ nv.models.lineWithFocusChart = function() {
   d3.rebind(chart, lines, 'defined', 'isArea', 'size', 'xDomain', 'yDomain', 'xRange', 'yRange', 'forceX', 'forceY', 'interactive', 'clipEdge', 'clipVoronoi', 'id');
 
   chart.options = nv.utils.optionsFunc.bind(chart);
-  
+
   chart.x = function(_) {
     if (!arguments.length) return lines.x;
     lines.x(_);
@@ -554,7 +553,7 @@ nv.models.lineWithFocusChart = function() {
     y2Axis.tickFormat(_);
     return chart;
   };
-  
+
   chart.brushExtent = function(_) {
     if (!arguments.length) return brushExtent;
     brushExtent = _;

@@ -7,8 +7,7 @@ nv.models.discreteBarChart = function() {
 
   var discretebar = nv.models.discreteBar()
     , xAxis = nv.models.axis()
-    , yAxis = nv.models.axis()
-    ;
+    , yAxis = nv.models.axis();
 
   var margin = {top: 15, right: 10, bottom: 50, left: 60}
     , width = null
@@ -27,8 +26,7 @@ nv.models.discreteBarChart = function() {
     , y
     , noData = "No Data Available."
     , dispatch = d3.dispatch('tooltipShow', 'tooltipHide', 'beforeUpdate')
-    , transitionDuration = 250
-    ;
+    , transitionDuration = 250;
 
   xAxis
     .orient('bottom')
@@ -72,9 +70,9 @@ nv.models.discreteBarChart = function() {
                              - margin.top - margin.bottom;
 
 
-      chart.update = function() { 
-        dispatch.beforeUpdate(); 
-        container.transition().duration(transitionDuration).call(chart); 
+      chart.update = function() {
+        dispatch.beforeUpdate();
+        container.transition().duration(transitionDuration).call(chart);
       };
       chart.container = this;
 
@@ -124,7 +122,7 @@ nv.models.discreteBarChart = function() {
       gEnter.append('g').attr('class', 'nv-y nv-axis')
             .append('g').attr('class', 'nv-zeroLine')
             .append('line');
-        
+
       gEnter.append('g').attr('class', 'nv-barsWrap');
 
       g.attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
@@ -259,7 +257,7 @@ nv.models.discreteBarChart = function() {
   d3.rebind(chart, discretebar, 'x', 'y', 'xDomain', 'yDomain', 'xRange', 'yRange', 'forceX', 'forceY', 'id', 'showValues', 'valueFormat');
 
   chart.options = nv.utils.optionsFunc.bind(chart);
-  
+
   chart.margin = function(_) {
     if (!arguments.length) return margin;
     margin.top    = typeof _.top    != 'undefined' ? _.top    : margin.top;
