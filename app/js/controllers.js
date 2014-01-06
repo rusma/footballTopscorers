@@ -10,15 +10,16 @@ angular.module('footballTopscorers.controllers', []).
         $scope.loadTablePL = function() {
         	var dfrd = $.Deferred();
 
-        	// localStorageService.set('topscorersPL', null);
+        	// localStorageService.set('table_pl', null);
         	if(localStorageService.get('table_pl') === null) {
-	        	statsfcApiService.getTablePL().success(function(response){
+	        	statsfcApiService.getTablePL().then(function(response){
 	        		console.log(response);
 		            if(response.length != 0 || response.error != null) {
-		            	localStorageService.add('table_pl', response);
-		            	var teams_match_data = $scope.loadDataForTeams(response, 'premier-league');
+		            	localStorageService.add('table_pl', response.data);
+		            	var teams_match_data = $scope.loadDataForTeams(response.data, 'premier-league');
 
 		            	teams_match_data.then(function(response){
+		            		console.log(response);
 			        		dfrd.resolve(response);
 			        	});
 		            }
@@ -40,19 +41,24 @@ angular.module('footballTopscorers.controllers', []).
 	    	var top_five_match_data = {};
 
 	    	var dfrd = $.Deferred();
+	    	var count = 0;
 
 	    	//if local storage has the data return that and skip call
+	    	// localStorageService.set('top_five_match_data', null)
 	    	if( localStorageService.get('top_five_match_data') !== null ) {
 	    		dfrd.resolve(localStorageService.get('top_five_match_data'));
 			   	return dfrd.promise();
 	    	}
 	    	_.each(table_data, function(val, index){
+	    		var position = val.position;
 	    		if(val.position <= 5) {
-		    		statsfcApiService.getMatchDataForTeam(val.teampath, competition).success(function(response){
+		    		statsfcApiService.getMatchDataForTeam(val.teampath, competition).then(function(response){
+		    			count ++;
 		    			top_five_match_data[val.teampath] = response;
 		    			console.log(top_five_match_data);
-
-		    			if(val.position === 5) {
+		    			console.log(top_five_match_data);
+		    			if(count === 5) {
+		    				console.log('FINISHEDDDD');
 			    			localStorageService.add('top_five_match_data', top_five_match_data);
 			    			dfrd.resolve(top_five_match_data);
 			    		}
@@ -86,18 +92,22 @@ angular.module('footballTopscorers.controllers', []).
 				//get the matches played by looking at the first team's matched played
 				//TODO: detect when a team is one match behind
 				if($scope.matches_played === 0 ) {
-					$scope.matches_played = val.length;
+					$scope.matches_played = val.data.length;
 				}
+
+				console.log(val);
 
 				//used jquery each for array, underscore didnt work
 				//loop through the matches themselves of a particular team
-				$.each(val, function(index, val) {
+				$.each(val.data, function(index, val) {
 					if(count === $scope.matches_played) {
 						top_five_with_goal_minutes.push({ team: team, goal_minutes: $scope.template_match_data});
 
 						$scope.setTemplateToDefault();
-						count = 0;
+						count = 1;
 					};
+
+					console.log(top_five_with_goal_minutes);
 
 					//loop through the incidents of a match
 					_.each(val.incidents, function(val, index){
@@ -122,6 +132,7 @@ angular.module('footballTopscorers.controllers', []).
 			});
 
 			//return the top five PL with all the minutes of their goals categorized
+			console.log(top_five_with_goal_minutes);
 			return top_five_with_goal_minutes;
 		};
 
@@ -151,6 +162,7 @@ angular.module('footballTopscorers.controllers', []).
 		};
 
 		$scope.getGraphDataForTopFivePL = function(top_five_match_data) {
+			console.log(top_five_match_data);
 			var top_five_with_goal_minutes = $scope.getGoalMinutesForTopFivePL(top_five_match_data);
 			var formatted_top_five_with_goal_minutes = [];
 

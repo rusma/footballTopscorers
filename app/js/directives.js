@@ -14,6 +14,8 @@ angular.module('footballTopscorers.directives', []).
                     var chart = nv.models.stackedAreaChart()
                                    .x(function(d) { return d[0] })
                                    .y(function(d) { return d[1] })
+                                   .height(400)
+                                   .width(1000)
                                    .clipEdge(true);
 
                     chart.xAxis
@@ -28,7 +30,7 @@ angular.module('footballTopscorers.directives', []).
                         .datum(data)
                         .transition().duration(1000).call(chart);
 
-                    nv.utils.windowResize(chart.update);
+                    // nv.utils.windowResize(chart.update);
 
                     return chart;
                 });

@@ -4,12 +4,13 @@ body {
   margin: 0;
   padding: 0;
   background-color: #efefef;
+   font-family: "Quattrocento", serif !important;
 }
 
 /*general positioning*/
 
 #container {
-  width: 80%;
+  width: 1000px;
   margin: 0 auto;
   margin-top: 5%;
 }

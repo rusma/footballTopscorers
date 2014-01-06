@@ -12,7 +12,7 @@ angular.module('footballTopscorers.services', []).
   	statsfcApi.getTablePL = function() {
   		return $http({
   			method: 'GET',
-  			url:'https://willjw-statsfc-competitions.p.mashape.com/table.json?key=free&competition=premier-league&year=2013%2F2014',
+  			url:'https://willjw-statsfc-competitions.p.mashape.com/table.json?key=tOu4X5wC9COJCxW1otUOpR6hwaa1y1bq53QMxqiw&competition=premier-league&year=2013%2F2014',
   			headers: {"X-Mashape-Authorization": "kFv3KUMDpoxt98Rh6u9ytW5IEpEWdKqQ"}
   		});
   	};
@@ -20,7 +20,7 @@ angular.module('footballTopscorers.services', []).
     statsfcApi.getMatchDataForTeam = function(team, competition) {
       return $http({
         method: 'GET',
-        url: 'https://willjw-statsfc-competitions.p.mashape.com/results.json?key=free&competition=' + competition + '&team=' + team + '',
+        url: 'https://willjw-statsfc-competitions.p.mashape.com/results.json?key=tOu4X5wC9COJCxW1otUOpR6hwaa1y1bq53QMxqiw&competition=' + competition + '&team=' + team + '',
         headers: {"X-Mashape-Authorization": "kFv3KUMDpoxt98Rh6u9ytW5IEpEWdKqQ"}
       });
     };

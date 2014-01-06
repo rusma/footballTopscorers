@@ -24,6 +24,8 @@
   <link rel="stylesheet" href="css/vendor/nv.d3.css"/>
   <link rel="stylesheet" href="css/app.css"/>
 
+  <link href='http://fonts.googleapis.com/css?family=Quattrocento' rel='stylesheet' type='text/css'>
+
   <!-- PRODUCTION
   <script src="build/js/production.min.js"></script>
   <link rel="stylesheet" href="build/css/build.min.css"/>
@@ -38,17 +40,12 @@
 
 <body ng-app="footballTopscorers"
   <div id="container">
+  <h1>When do the current top five PL teams score?</h1>
       <div id="leagueFilter">
-          <label for="pl">PL</label>
-          <input type="checkbox" name="pl" checked>
-          <label for="cl">CL</label>
-          <input type="checkbox" name="cl">
-      </div>
-      <div id="topscorerInfoFilter">
-        <label for="topscorers">Topscorers's goals</label>
-        <input name="topscorers" type="checkbox" checked>
-        <label for="topscorers">Share of team's goals</label>
-        <input type="checkbox">
+          <label for="pl">Home</label>
+          <input type="radio" name="pl" checked>
+          <label for="cl">Away</label>
+          <input type="radio" name="cl">
       </div>
 
       <div id="wrapper">
