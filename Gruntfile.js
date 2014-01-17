@@ -40,7 +40,7 @@ module.exports = function(grunt) {
         },
 
         jshint: {
-          beforeconcat: ['js/*.js']
+          beforeconcat: ['app/js/*.js']
         },
 
         uglify: {

@@ -157,7 +157,6 @@ angular.module('footballTopscorers.controllers', []).
 				{index: 80, goals_for_minute: []},
 				{index: 85, goals_for_minute: []},
 				{index: 90, goals_for_minute: []},
-				{index: 95, goals_for_minute: []}
 			];
 		};
 
@@ -167,6 +166,7 @@ angular.module('footballTopscorers.controllers', []).
 			var formatted_top_five_with_goal_minutes = [];
 
 			_.each(top_five_with_goal_minutes, function(val, index){
+				//add colors here per team
 				formatted_top_five_with_goal_minutes.push({'key': val.team, 'values': []});
 			});
 

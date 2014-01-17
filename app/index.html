@@ -38,21 +38,40 @@
   -->
 </head>
 
-<body ng-app="footballTopscorers"
+<body ng-app="footballTopscorers">
+
+  <!-- CSS3 checkboxes need same name as parent for somehow/.. -->
   <div id="container">
-  <h1>When do the current top five PL teams score?</h1>
-      <div id="leagueFilter">
-          <label for="pl">Home</label>
-          <input type="radio" name="pl" checked>
-          <label for="cl">Away</label>
-          <input type="radio" name="cl">
+    <div id="header">
+      <div id="left_header">
+        <p>Home</p>
+        <div class="home_away_filter home_filter">
+          <input type="checkbox" value="None" id="home_filter" name="check" />
+          <label for="home_filter"></label>
+        </div>
       </div>
 
-      <div id="wrapper">
+      <div id="center_header">
+        <img id="football_vis_logo" src="http://placehold.it/200x150" alt="football_vis_logo">
+      </div>
 
-        <div id="vis_container" ng-controller="topscorersController">
-          <svg topscorer-bubble-chart id="bubbleTopscorerChart"></svg>
-        </div><!--end wrapper controller -->
+      <div id="right_header">
+        <p>Away</p>
+        <div class="home_away_filter away_filter">
+          <input type="checkbox" value="None" id="away_filter" name="check" />
+          <label for="away_filter"></label>
+        </div>
+      </div>
+    </div>
+
+    <div class="clear"></div>
+
+    <h1>What is the chance of the current top five Premier League teams scoring during a match?</h1>
+
+    <div id="wrapper">
+      <div id="vis_container" ng-controller="topscorersController">
+        <svg topscorer-bubble-chart id="bubbleTopscorerChart"></svg>
+      </div><!--end wrapper controller -->
     </div>
 
   </div>

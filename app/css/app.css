@@ -4,18 +4,42 @@ body {
   margin: 0;
   padding: 0;
   background-color: #efefef;
-   font-family: "Quattrocento", serif !important;
+  font-family: "Quattrocento", serif !important;
+}
+
+input[type=checkbox] {
+  visibility: hidden;
+}
+
+.clear {
+  clear: both;
 }
 
 /*general positioning*/
 
+/* LOGO and header */
+  img#football_vis_logo {
+    width: 200px;
+
+  }
+  h1 {
+    text-align: center;
+  }
+
+/*End logo and header */
+
+#header {
+  height: 170px;
+  width: 100%;
+}
 #container {
-  width: 1000px;
+  width: 70%;
   margin: 0 auto;
-  margin-top: 5%;
+  margin-top: 20px;
 }
 
 #vis_container {
+  background-color: #F0F0F0;
   border: 1px solid #DFDFE0;
   border-radius: 3px;
   box-shadow: 0px 0px 20px #111;
@@ -24,20 +48,79 @@ body {
   height: 400px; /*change this to auto*/
 }
 
-div#leagueFilter {
-  border-left: 1px solid #DFDFE0;
-  border-top: 1px solid #DFDFE0;
-  border-bottom: 1px solid #DFDFE0;
-  width: 40px;
-  margin-top: 10%;
-  margin-left: -40px;
+
+#center_header {
+  width: 33%;
   float: left;
+  text-align: center;
+}
+#left_header {
+  float: left;
+  width: 33%;
 }
 
-  div#leagueFilter input {
-    width: 40px;
-    margin: 5px 0px;
-  }
+#right_header {
+  float: left;
+  width: 33%;
+}
+
+.home_away_filter  {
+  position:relative;
+}
+
+.home_away_filter label {
+  cursor: pointer;
+  position: absolute;
+  width: 40px;
+  height: 35px;
+  top: 0;
+  border-radius: 4px;
+
+  -webkit-box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,.4);
+  -moz-box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,.4);
+  box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,.4);
+
+  background: -webkit-linear-gradient(top, #EFEFEF 0%, #F0F0F0 100%);
+  background: -moz-linear-gradient(top, #EFEFEF 0%, #F0F0F0 100%);
+  background: -o-linear-gradient(top, #EFEFEF 0%, #F0F0F0 100%);
+  background: -ms-linear-gradient(top, #EFEFEF 0%, #F0F0F0 100%);
+  background: linear-gradient(top, #EFEFEF 0%, #F0F0F0 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#EFEFEF', endColorstr='#F0F0F0',GradientType=0 );
+}
+
+.home_away_filter label:after {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  opacity: 0;
+  content: '';
+  position: absolute;
+  width: 29px;
+  height: 15px;
+  background: transparent;
+  top: 4px;
+  left: 4px;
+  border: 3px solid #222;
+  border-top: none;
+  border-right: none;
+
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+.home_away_filter label:hover::after {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+  filter: alpha(opacity=30);
+  opacity: 0.3;
+}
+
+.home_away_filter input[type=checkbox]:checked + label:after {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  filter: alpha(opacity=100);
+  opacity: 1;
+}
 
 div#topscorerInfoFilter {
   border-left: 1px solid #DFDFE0;

@@ -11,26 +11,29 @@ angular.module('footballTopscorers.directives', []).
                 //this doesnt make any sense..
             	scope.loadTablePL().then(function(top_five_match_data){
                   nv.addGraph(function() {
-                    var chart = nv.models.stackedAreaChart()
-                                   .x(function(d) { return d[0] })
-                                   .y(function(d) { return d[1] })
-                                   .height(400)
-                                   .width(1000)
-                                   .clipEdge(true);
+                    var chart = nv.models.multiBarChart()
+                                  .x(function(d) { return d[0] })
+                                  .y(function(d) { return d[1] })
+                                  .height(400)
+                                  .clipEdge(true)
+                                  .tooltipContent(function(key, y, e, graph){
+                                    console.log(key, graph);
+                                    return "<img src='hello.png'>" + graph.point[0] + "m till " + (graph.point[0] + 5) + "m";
+                                  });
 
                     chart.xAxis
                       .tickFormat(function(d) { return d + "m";});
 
                     chart.yAxis
-                      .tickFormat(d3.format(',.2f'));
+                      .tickFormat(function(d) { return d + "%"});
 
                     var data = scope.getGraphDataForTopFivePL(top_five_match_data);
 
                     d3.select(elem[0])
                         .datum(data)
-                        .transition().duration(1000).call(chart);
+                        .transition().duration(600).call(chart);
 
-                    // nv.utils.windowResize(chart.update);
+                    nv.utils.windowResize(chart.update);
 
                     return chart;
                 });
