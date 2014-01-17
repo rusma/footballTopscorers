@@ -17,8 +17,8 @@ angular.module('footballTopscorers.directives', []).
                                   .height(400)
                                   .clipEdge(true)
                                   .tooltipContent(function(key, y, e, graph){
-                                    console.log(key, graph);
-                                    return "<img src='hello.png'>" + graph.point[0] + "m till " + (graph.point[0] + 5) + "m";
+                                    return "<div class='tooltip'><img width='50px' height='50px' src='img/"+ key +".png'><br><span class='chance'>"+
+                                    graph.value +"%</span><br>" + graph.point[0] + "th till " + (graph.point[0] + 5) + "th minute" + "</div>";
                                   });
 
                     chart.xAxis

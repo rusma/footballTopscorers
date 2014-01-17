@@ -15,6 +15,10 @@ input[type=checkbox] {
   clear: both;
 }
 
+h1 {
+  margin-top: 5px;
+}
+
 /*general positioning*/
 
 /* LOGO and header */
@@ -35,7 +39,7 @@ input[type=checkbox] {
 #container {
   width: 70%;
   margin: 0 auto;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 #vis_container {
@@ -46,6 +50,7 @@ input[type=checkbox] {
   -moz-box-shadow: 0px 0px 20px #DFDFE0;
   -webkit-box-shadow: 0px 0px 20px #DFDFE0;
   height: 400px; /*change this to auto*/
+  max-width: 1200px;
 }
 
 
@@ -136,3 +141,14 @@ div#topscorerInfoFilter {
   }
 
 /*END general positioning*/
+
+/* TOOLTIP */
+.tooltip {
+  text-align: center;
+  padding: 10px 5px;
+}
+
+.tooltip .chance {
+  font-size: 16px;
+  font-weight: bold;
+}

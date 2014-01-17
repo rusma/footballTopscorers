@@ -7978,7 +7978,7 @@ nv.models.multiBarChart = function() {
     , controls = nv.models.legend()
     ;
 
-  var margin = {top: 30, right: 20, bottom: 50, left: 60}
+  var margin = {top: 35, right: 20, bottom: 50, left: 60}
     , width = null
     , height = null
     , color = nv.utils.defaultColor()
@@ -7987,7 +7987,7 @@ nv.models.multiBarChart = function() {
     , showXAxis = true
     , showYAxis = true
     , rightAlignYAxis = false
-    , reduceXTicks = true // if false a tick will show for every data point
+    , reduceXTicks = false // if false a tick will show for every data point
     , staggerLabels = false
     , rotateLabels = 0
     , tooltips = true
@@ -8006,7 +8006,7 @@ nv.models.multiBarChart = function() {
     ;
 
   multibar
-    .stacked(false)
+    .stacked(true)
     ;
   xAxis
     .orient('bottom')
