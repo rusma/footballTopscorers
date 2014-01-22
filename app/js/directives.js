@@ -8,10 +8,11 @@ angular.module('footballTopscorers.directives', []).
 	    return {
             restrict: 'A', // Directive Scope is Attribute
             link: function (scope, elem, attrs) {
-                //this doesnt make any sense..
+              //this doesnt make any sense.. loadtable -->match_data returned
             	scope.loadTablePL().then(function(top_five_match_data){
+                  console.log(top_five_match_data);
                   nv.addGraph(function() {
-                    var chart = nv.models.multiBarChart()
+                    scope.chart = nv.models.multiBarChart()
                                   .x(function(d) { return d[0] })
                                   .y(function(d) { return d[1] })
                                   .height(400)
@@ -21,21 +22,18 @@ angular.module('footballTopscorers.directives', []).
                                     graph.value +"%</span><br>" + graph.point[0] + "th till " + (graph.point[0] + 5) + "th minute" + "</div>";
                                   });
 
-                    chart.xAxis
+                    scope.chart.xAxis
                       .tickFormat(function(d) { return d + "m";});
 
-                    chart.yAxis
+                    scope.chart.yAxis
                       .tickFormat(function(d) { return d + "%"});
 
-                    var data = scope.getGraphDataForTopFivePL(top_five_match_data);
+                    var data = scope.generateGraphDataForTopFiveMatchData(top_five_match_data);
+                    scope.renderChartWithData(data, d3.select(elem[0]));
 
-                    d3.select(elem[0])
-                        .datum(data)
-                        .transition().duration(600).call(chart);
+                    nv.utils.windowResize(scope.chart.update);
 
-                    nv.utils.windowResize(chart.update);
-
-                    return chart;
+                    return scope.chart;
                 });
             });
     	}

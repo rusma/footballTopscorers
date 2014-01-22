@@ -13,10 +13,6 @@
   <script src="lib/d3.v3.js"></script>
   <script src="lib/nvd3/nv.d3.js"></script>
 
-  <!-- <script src="lib/nvd3/xml2json.js"></script> -->
-
-
-
   <link rel="stylesheet" href="css/vendor/nv.d3.css"/>
   <link rel="stylesheet" href="css/app.css"/>
 
@@ -37,13 +33,23 @@
 <body ng-app="footballTopscorers">
 
   <!-- CSS3 checkboxes need same name as parent for somehow/.. -->
-  <div id="container">
+  <div id="container" ng-controller="topscorersController">
     <div id="header">
       <div id="left_header">
-        <p>Home</p>
-        <div class="home_away_filter home_filter">
-          <input type="checkbox" value="None" id="home_filter" name="check" />
-          <label for="home_filter"></label>
+        <div id="home_wrapper">
+          <img id="home_img"src="img/home.png">
+          <div class="home_away_filter home_filter">
+            <input type="checkbox"
+              checked
+              ng-model="home_status"
+              ng-true-value='true'
+              ng-false-value='false'
+              ng-change="switchHomeAwayLeagueData()"
+              value="None"
+              id="home_filter"
+              name="check" />
+            <label for="home_filter"></label>
+          </div>
         </div>
       </div>
 
@@ -52,20 +58,31 @@
       </div>
 
       <div id="right_header">
-        <p>Away</p>
-        <div class="home_away_filter away_filter">
-          <input type="checkbox" value="None" id="away_filter" name="check" />
-          <label for="away_filter"></label>
+        <div id="away_wrapper">
+          <img id="away_img" src="img/away.png">
+          <div class="home_away_filter away_filter">
+            <input type="checkbox"
+              checked
+              value="None"
+              ng-model="away_status"
+              ng-change="switchHomeAwayLeagueData()"
+              ng-true-value='true'
+              ng-false-value='false'
+              value="None"
+              id="away_filter"
+              name="check" />
+            <label for="away_filter"></label>
+          </div>
         </div>
       </div>
     </div>
 
     <div class="clear"></div>
 
-    <h1>What is the chance of the current top five Premier League teams scoring during a match?</h1>
+    <h1>What is the chance of the current top five Premier League teams scoring during <span id="match_type"> a match?</span></h1>
 
     <div id="wrapper">
-      <div id="vis_container" ng-controller="topscorersController">
+      <div id="vis_container" >
         <svg topscorer-bubble-chart id="bubbleTopscorerChart"></svg>
       </div><!--end wrapper controller -->
     </div>
