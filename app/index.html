@@ -31,6 +31,12 @@
 </head>
 
 <body ng-app="footballTopscorers">
+  <div id="loader">
+    <h3>Loading ..</h3>
+    <img src="img/loading.gif" alt="loading">
+  </div>
+
+  <div class="overlay"></div>
 
   <!-- CSS3 checkboxes need same name as parent for somehow/.. -->
   <div id="container" ng-controller="topscorersController">
@@ -54,6 +60,9 @@
       </div>
 
       <div id="center_header">
+        <h2 id="season">2013 - 2014</h2>
+        <img width="32px" id="calendar_img" height="32px"src="img/1day.png" alt="">
+        <span id="matches_played">-</span><div class="clear"></div>
         <img id="football_vis_logo" src="img/logo_football_vis.png" alt="football_vis_logo">
       </div>
 
@@ -79,7 +88,7 @@
 
     <div class="clear"></div>
 
-    <h1>What is the chance of the current top five Premier League teams scoring during <span id="match_type"> a match?</span></h1>
+    <h1>What is the estimated chance of the <span id="underline">current</span> top five Premier League teams scoring during <span id="match_type"> a match?</span></h1>
 
     <div id="wrapper">
       <div id="vis_container" >

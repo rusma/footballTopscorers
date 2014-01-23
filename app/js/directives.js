@@ -4,22 +4,26 @@
 
 
 angular.module('footballTopscorers.directives', []).
-  	directive('topscorerBubbleChart', function() {
+  	directive('topscorerBubbleChart', function(localStorageService) {
 	    return {
             restrict: 'A', // Directive Scope is Attribute
             link: function (scope, elem, attrs) {
+              //localStorageService.clearAll()
               //this doesnt make any sense.. loadtable -->match_data returned
             	scope.loadTablePL().then(function(top_five_match_data){
-                  console.log(top_five_match_data);
                   nv.addGraph(function() {
+                    var positions_for_team = localStorageService.get('positions_for_team');
+
                     scope.chart = nv.models.multiBarChart()
                                   .x(function(d) { return d[0] })
                                   .y(function(d) { return d[1] })
                                   .height(400)
                                   .clipEdge(true)
                                   .tooltipContent(function(key, y, e, graph){
-                                    return "<div class='tooltip'><img width='50px' height='50px' src='img/"+ key +".png'><br><span class='chance'>"+
-                                    graph.value +"%</span><br>" + graph.point[0] + "th till " + (graph.point[0] + 5) + "th minute" + "</div>";
+                                    return "<div class='tooltip'><span class='position'>#" + positions_for_team[key] +
+                                    "</span><br><img width='50px' height='50px' src='img/"+ key +".png'><br><br>" +
+                                    "<span class='chance'>" +  + graph.value + "%</span><br><br><img src='img/stopwatch.png'/><br>" +
+                                    graph.point[0] + "th - " + (graph.point[0] + 5) + "th</div>";
                                   });
 
                     scope.chart.xAxis

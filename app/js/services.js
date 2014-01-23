@@ -13,7 +13,9 @@ angular.module('footballTopscorers.services', []).
   		return $http({
   			method: 'GET',
   			url:'https://willjw-statsfc-competitions.p.mashape.com/table.json?key=free&competition=premier-league&year=2013%2F2014',
-  			headers: {"X-Mashape-Authorization": "kFv3KUMDpoxt98Rh6u9ytW5IEpEWdKqQ"}
+  			headers: {"X-Mashape-Authorization": "BSv6DmEFfFDroXCJfIDdztaE6zVIGecw"}
+        //BSv6DmEFfFDroXCJfIDdztaE6zVIGecw
+        //kFv3KUMDpoxt98Rh6u9ytW5IEpEWdKqQ
   		});
   	};
 
@@ -21,20 +23,9 @@ angular.module('footballTopscorers.services', []).
       return $http({
         method: 'GET',
         url: 'https://willjw-statsfc-competitions.p.mashape.com/results.json?key=free&competition=' + competition + '&team=' + team + '',
-        headers: {"X-Mashape-Authorization": "kFv3KUMDpoxt98Rh6u9ytW5IEpEWdKqQ"}
+        headers: {"X-Mashape-Authorization": "BSv6DmEFfFDroXCJfIDdztaE6zVIGecw"}
       });
     };
-
-    // if(typeof $httpDefaultCache.get("topscorersPL") === 'undefined') {
-    //   console.log('in here');
-    //   statsfcApi.getTopScorersPL().success(function(response){
-    //     $httpDefaultCache.put("topscorersPL", response);
-    //   });
-    // } else {
-    //   console.log($httpDefaultCache.get("topscorersPL"));
-    // }
-
-
 
   	return statsfcApi;
   });
