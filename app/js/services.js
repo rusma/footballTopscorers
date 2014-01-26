@@ -5,7 +5,7 @@
 
 // Demonstrate how to register services
 // In this case it is a simple value service.
-angular.module('footballTopscorers.services', []).
+angular.module('footballVis.services', []).
   factory('statsfcApiService', function($http, $cacheFactory) {
   	var statsfcApi = {};
 

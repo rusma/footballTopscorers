@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app="footballTopscorers">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <title>Football Vis</title>
@@ -30,7 +30,7 @@
   -->
 </head>
 
-<body ng-app="footballTopscorers">
+<body ng-app="footballVis">
   <div id="loader">
     <h3>Loading ..</h3>
     <img src="img/loading.gif" alt="loading">
@@ -39,7 +39,7 @@
   <div class="overlay"></div>
 
   <!-- CSS3 checkboxes need same name as parent for somehow/.. -->
-  <div id="container" ng-controller="topscorersController">
+  <div id="container" ng-controller="mainController">
     <div id="header">
       <div id="left_header">
         <div id="home_wrapper">
@@ -88,12 +88,14 @@
 
     <div class="clear"></div>
 
-    <h1>What is the estimated chance of the <span id="underline">current</span> top five Premier League teams scoring during <span id="match_type"> a match?</span></h1>
+    <h1>Looking at preceding games, what is the average probability that a <span id="underline">current</span> top five Premier League team scores during <span id="match_type"> a match</span> ?</h1>
 
     <div id="wrapper">
       <div id="vis_container" >
-        <svg topscorer-bubble-chart id="bubbleTopscorerChart"></svg>
+        <svg match-bar-chart id="match_bar_chart"></svg>
+        <span id="half_time" ><img src="img/tea.png" title="Half time"alt="half-time"></span>
       </div><!--end wrapper controller -->
+
     </div>
 
       <script src="js/app.js"></script>

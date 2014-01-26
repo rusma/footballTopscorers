@@ -2,8 +2,8 @@
 
 /* Controllers */
 
-angular.module('footballTopscorers.controllers', []).
-    controller('topscorersController', function($scope, statsfcApiService, localStorageService) {
+angular.module('footballVis.controllers', []).
+    controller('mainController', function($scope, statsfcApiService, localStorageService) {
     	$scope.home_status = 'true';
     	$scope.away_status = 'true';
 
@@ -60,10 +60,11 @@ angular.module('footballTopscorers.controllers', []).
 			];
 		};
 
+		//league position will be mapped to team here
         $scope.positions_for_team = {};
 
+        //spinner and faded background function
 	   	$scope.loader = function(remove) {
-	   		console.log('happens');
             var $overlay = $('.overlay'),
                 $loader = $('#loader');
 
@@ -77,43 +78,58 @@ angular.module('footballTopscorers.controllers', []).
         };
 
 
-        $scope.loadTablePL = function() {
-        	var dfrd = $.Deferred();
+        $scope.initDataLoading = function() {
+        	var dfrd = $.Deferred(),
+        		local_storage_table = localStorageService.get('table_pl');
 
-        	// localStorageService.set('table_pl', null);
-        	//TODO: REMOVE LOCAL STORAGE AND MAKE CHECK FOR MATCHES PLAYED
+        	//show spinner
+    		$scope.loader(false);
 
-        	//remove check for local storage
+    		//get the table from our api
+    		//statsfcApiService is an injected service
+        	statsfcApiService.getTablePL().then(function(response){
+	            if(response.length != 0 || response.error != null) {
 
-        	// get new data each time
+	            	if(local_storage_table === null) {
+		            	//if the application is launched for the first time add the localstorage value
+		            	//otherwise the next statement will cause error
+	            		localStorageService.add('table_pl', response);
+	            		local_storage_table = localStorageService.get('table_pl');
+	            	}
 
-        	//compare data[0].played to localstorage_val[0].played
-        	if(localStorageService.get('table_pl') === null) {
-        		$scope.loader(false);
-	        	statsfcApiService.getTablePL().then(function(response){
-		            if(response.length != 0 || response.error != null) {
-		            	localStorageService.add('table_pl', response.data);
-		            	var teams_match_data = $scope.loadMatchDataForTeams(response.data, 'premier-league');
+	            	var teams_match_data;
 
-		            	teams_match_data.then(function(response){
-			        		dfrd.resolve(response);
+	            	if(response.data[0].played > local_storage_table.data[0]) {
+	            		//clear all local storage because there is new match data
+	            		localStorageService.clearAll();
+
+	            		//add the current table of the Premier League
+	            		localStorageService.add('table_pl', response.data);
+
+		            	//get new match data because there is an extra match played
+		            	teams_match_data = $scope.loadMatchDataForTeams(local_storage_table.data, 'premier-league');
+
+		            	teams_match_data.then(function(match_data){
+			        		dfrd.resolve(match_data);
 			        		$scope.loader(true);
 			        	});
-		            } else {
-		            	throw "response error while getting pl table";
-		            	return;
-		            }
-		        });
-	        } else {
-	        	$scope.loader(false);
-	        	var local_storage_response = localStorageService.get('table_pl');
-	        	var teams_match_data = $scope.loadMatchDataForTeams(local_storage_response, 'premier-league');
+	            	} else {
+	            		//fetch match data from our local storage table since there isnt an extra match played
+	            		teams_match_data = $scope.loadMatchDataForTeams(local_storage_table.data, 'premier-league');
 
-	        	teams_match_data.then(function(response){
-	        		$scope.loader(true);
-	        		dfrd.resolve(response);
-	        	});
-	        }
+	            		teams_match_data.then(function(match_data){
+			        		$scope.loader(true);
+			        		dfrd.resolve(match_data);
+			        	});
+	            	}
+
+	            } else {
+	            	throw "response error while getting pl table";
+	            	console.log(response.error);
+	            	alert('Something went wrong while loading data');
+	            	return;
+	            }
+	        });
 
 	        return dfrd.promise();
 	    };
@@ -151,13 +167,8 @@ angular.module('footballTopscorers.controllers', []).
 			    			localStorageService.add('positions_for_team', positions_for_team);
 			    			dfrd.resolve(top_five_match_data);
 			    		}
-
 		    		});
-
-		    	} else {
-		    		//we dont want any other league table positions higher than 5
 		    	}
-
 			});
 
 			return dfrd.promise();
@@ -239,6 +250,8 @@ angular.module('footballTopscorers.controllers', []).
 		}
 
 		$scope.generateGraphDataForTopFiveMatchData = function(top_five_match_data) {
+			//unformatted = plain match data
+			//formatted = data for the graph per team
 			var unformatted_top_five_with_goal_minutes = $scope.getGoalMinutesForTopFiveTable(top_five_match_data);
 			var formatted_top_five_with_goal_minutes = [];
 
@@ -259,16 +272,16 @@ angular.module('footballTopscorers.controllers', []).
 			$scope.sortTeamSequence(formatted_top_five_with_goal_minutes);
 
 			//this should also be in a diff function
-			_.each(formatted_top_five_with_goal_minutes, function(team_goal_minutes, index){
+			_.each(formatted_top_five_with_goal_minutes, function(form_team_goal_minutes, index){
 				//cache the formatted one because we wont have access in the next function
-				var formatted_goal_minutes_team = team_goal_minutes;
+				var formatted_goal_minutes_team = form_team_goal_minutes;
 
-				_.each(unformatted_top_five_with_goal_minutes, function(val, index) {
-					if(formatted_goal_minutes_team.key === val.team) {
-						_.each(val.goal_minutes, function(val, index){
+				_.each(unformatted_top_five_with_goal_minutes, function(unf_team_goal_minutes, index) {
+					if(formatted_goal_minutes_team.key === unf_team_goal_minutes.team) {
+						_.each(unf_team_goal_minutes.goal_minutes, function(goal, index){
 							//calculate the chance of a goal
 							formatted_goal_minutes_team.values.push(
-								[ val.index, Math.round( (val.goals_for_minute.length / $scope.matches_played) * 100 )]
+								[ goal.index, Math.round( (goal.goals_for_minute.length / $scope.matches_played) * 100 )]
 							);
 						});
 					}
@@ -279,15 +292,12 @@ angular.module('footballTopscorers.controllers', []).
 		};
 
 		$scope.sortTeamSequence = function(formatted_top_five_with_goal_minutes) {
-			// var dfrd = $.Defferred();
-
 			formatted_top_five_with_goal_minutes.sort(function(a,b){
 				var positions_for_team = localStorageService.get('positions_for_team');
 				if( positions_for_team[a.key] > positions_for_team[b.key] ) {
 					return 1;
 				}
 			});
-			console.log(formatted_top_five_with_goal_minutes);
 		}
 
 		$scope.renderChartWithData = function(data, elem) {
@@ -295,9 +305,9 @@ angular.module('footballTopscorers.controllers', []).
 
 			if($scope.svg_elem === null) {
 				selected_svg_elem = elem;
-
 				//cache elem because only the directive can send this
-				//if a controller func calls this func then it cant provide the elem
+				//if a controller func calls this func then it cant provide the elem so then it
+				//uses the one we binded to the scope
 				$scope.svg_elem = elem;
 			} else {
 				selected_svg_elem = $scope.svg_elem;
@@ -309,7 +319,6 @@ angular.module('footballTopscorers.controllers', []).
 		//code that checks if a checkbox is checked
 		//and then gets the home and or away data
 		$scope.switchHomeAwayLeagueData = function(type, status) {
-			console.log('CHANGE');
 			var change_to_match_type_status;
 
 			if($scope.home_status === 'true' && $scope.away_status === 'false') {
@@ -333,7 +342,6 @@ angular.module('footballTopscorers.controllers', []).
 			}
 
 			if(change_to_match_type_status === $scope.current_match_type_status) {
-				console.log('get no new data');
 				return;
 			}
 
@@ -365,8 +373,4 @@ angular.module('footballTopscorers.controllers', []).
 
 			}
 		};
-
-		$scope.emptyDataCheck = function(data) {
-			throw 'errror';
-		}
 });

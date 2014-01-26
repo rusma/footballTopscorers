@@ -57,9 +57,18 @@ input[type=checkbox] {
   box-shadow: 0px 0px 20px #111;
   -moz-box-shadow: 0px 0px 20px #DFDFE0;
   -webkit-box-shadow: 0px 0px 20px #DFDFE0;
-  height: 400px; /*change this to auto*/
+  height: 415px; /*change this to auto*/
   max-width: 1200px;
 }
+  #vis_container svg {
+    height: 390px;
+  }
+
+  #half_time {
+    display: inline-block;
+    margin-top: -90px;
+    margin-left: 48%;
+  }
 
 
 #center_header {

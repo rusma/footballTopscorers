@@ -3,14 +3,14 @@
 /* Directives */
 
 
-angular.module('footballTopscorers.directives', []).
-  	directive('topscorerBubbleChart', function(localStorageService) {
+angular.module('footballVis.directives', []).
+  	directive('matchBarChart', function(localStorageService) {
 	    return {
-            restrict: 'A', // Directive Scope is Attribute
+            restrict: 'A', // Directive Scope is attribute
             link: function (scope, elem, attrs) {
-              //localStorageService.clearAll()
-              //this doesnt make any sense.. loadtable -->match_data returned
-            	scope.loadTablePL().then(function(top_five_match_data){
+              //call initDataLoading which is some sort of Facade that get's the data retrieval
+              //and parsing going
+            	scope.initDataLoading().then(function(top_five_match_data){
                   nv.addGraph(function() {
                     var positions_for_team = localStorageService.get('positions_for_team');
 
@@ -32,9 +32,13 @@ angular.module('footballTopscorers.directives', []).
                     scope.chart.yAxis
                       .tickFormat(function(d) { return d + "%"});
 
+                    //get our graph data for our plain match data
                     var data = scope.generateGraphDataForTopFiveMatchData(top_five_match_data);
+
+                    //call the renderChartWithData function inside the controller
                     scope.renderChartWithData(data, d3.select(elem[0]));
 
+                    //make the whole graph resizable
                     nv.utils.windowResize(scope.chart.update);
 
                     return scope.chart;
