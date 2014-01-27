@@ -19,7 +19,8 @@ input[type=checkbox] {
 
 /* LOGO and header */
   img#football_vis_logo {
-    width: 200px;
+    width: 185px;
+    height: 135px;
   }
 
   h1 {
