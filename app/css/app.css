@@ -251,7 +251,6 @@ div#topscorerInfoFilter {
   height: 24px;
 }
 
-
 #loader {
   display: none;
   text-align: center;
@@ -261,7 +260,6 @@ div#topscorerInfoFilter {
   z-index:9999;
 }
 
-
 .overlay {
   display: none;
   position:absolute;
@@ -270,7 +268,6 @@ div#topscorerInfoFilter {
   right:0;
   bottom:0;
   background-color:rgba(233, 233, 233, 0.8);
-  background: url(data:;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAABl0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuNUmK/OAAAAATSURBVBhXY2RgYNgHxGAAYuwDAA78AjwwRoQYAAAAAElFTkSuQmCC) repeat scroll transparent\9; /* ie fallback png background image */
   z-index:9998;
   color:white;
 }

@@ -3,11 +3,10 @@
 <head>
   <meta charset="utf-8">
   <title>Football Vis</title>
-
+  <!-- DEV
   <script src="lib/angular/angular.js"></script>
   <script language="javascript"  type="text/javascript" src="lib/jquery.js"></script>
   <script language="javascript" type="text/javascript" src="lib/angular-local-storage.js"></script>
-  <script src="lib/angular/angular-route.js"></script>
 
   <script src="lib/underscore.js"></script>
   <script src="lib/d3.v3.js"></script>
@@ -17,20 +16,11 @@
   <link rel="stylesheet" href="css/vendor/nv.d3.css"/>
   <link rel="stylesheet" type="text/css" href="css/vendor/jquery.flipcountdown.css" />
   <link rel="stylesheet" href="css/app.css"/>
+   -->
 
-
-  <link href='http://fonts.googleapis.com/css?family=Quattrocento' rel='stylesheet' type='text/css'>
-
-  <!-- PRODUCTION
   <script src="build/js/production.min.js"></script>
   <link rel="stylesheet" href="build/css/build.min.css"/>
-
-  <!--load angular logic seperately because uglifying of this causes errors--><!--
-  <script src="js/services/services.js"></script>
-  <script src="js/controllers/controllers.js"></script>
-  <script src="js/filters/filters.js"></script>
-  <script src="js/directives/directives.js"></script>
-  -->
+  <link href='http://fonts.googleapis.com/css?family=Quattrocento' rel='stylesheet' type='text/css'>
 
 </head>
 
@@ -112,11 +102,12 @@
 
     </div>
 
-      <script src="js/app.js"></script>
-      <script src="js/services.js"></script>
-      <script src="js/controllers.js"></script>
-      <script src="js/filters.js"></script>
-      <script src="js/directives.js"></script>
+    <!-- These have to be loaded manually because minification messes up angular flow -->
+    <script src="js/app.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="js/directives.js"></script>
 
   </div>
 </body>

@@ -38,6 +38,7 @@ angular.module('footballVis.controllers', []).
     		'newcastle-united': '#020202',
     		'southampton': '#D92128',
     		'aston-villa': '#94BEE3',
+
     	};
 
     	$scope.svg_elem = null;
@@ -98,19 +99,36 @@ angular.module('footballVis.controllers', []).
         	statsfcApiService.getTablePL($scope.selected_season_year).then(function(response){
 	            if(response.length != 0 || response.error != null) {
 	            	$scope.matches_played = response.data[0].played;
+	            	$scope.updateMatchesPlayedTicker();
 
 	            	if(local_storage_table === null) {
 		            	//if the application is launched for the first time add the localstorage value
-		            	//line 136 will cause error
+		            	//otherwise the next statement will cause error
 	            		localStorageService.add('table_pl_' + $scope.selected_season_year + '', response);
 	            		local_storage_table = localStorageService.get('table_pl_' + $scope.selected_season_year + '');
 	            	}
 
-	            	//this determines what if local storage is given as parameter or new data(response)
-	            	//check line 147 and 151 for more detail
-	            	var teams_match_data = $scope.checkIfExtraMatchPlayed(local_storage_table, response);
+	            	var teams_match_data;
 
-	            	//call the function which returns the topfive match data
+	            	//if this is the current season of the pl - and there is an extra match played get new values
+	            	//for the current season
+	            	if($scope.matches_played > local_storage_table.data[0] && $scope.selected_season_year === $scope.current_season_year) {
+	            		//clear all local storage because there is new match data
+	            		localStorageService.remove('table_pl_' + $scope.current_season_year + '');
+	            		localStorageService.remove('positions_for_team_' + $scope.current_season_year + '');
+	            		localStorageService.remove('top_five_match_data_' + $scope.current_season_year + '');
+
+	            		//add the current table of the Premier League
+	            		localStorageService.add('table_pl_' + $scope.selected_season_year + '', response.data);
+
+		            	//get new match data because there is an extra match played
+		            	teams_match_data = $scope.loadMatchDataForTeams(local_storage_table.data, 'premier-league');
+
+	            	} else {
+	            		//fetch match data from our local storage table since there isnt an extra match played
+	            		teams_match_data = $scope.loadMatchDataForTeams(local_storage_table.data, 'premier-league');
+	            	}
+
             		teams_match_data.then(function(match_data){
 		        		dfrd.resolve(match_data);
 		        		$scope.loader(true);
@@ -124,36 +142,8 @@ angular.module('footballVis.controllers', []).
 	            }
 	        });
 
-			//update the ticker with matches played
-			$scope.updateMatchesPlayedTicker();
-
 	        return dfrd.promise();
 	    };
-
-	    $scope.checkIfExtraMatchPlayed = function(local_storage_table) {
-	    	var teams_match_data;
-	    	//if this is the current season of the pl - and there is an extra match played get new values
-	        //for the current season
-        	if($scope.matches_played > local_storage_table.data[0]
-        		&& $scope.selected_season_year === $scope.current_season_year) {
-        		//clear all local storage because there is new match data
-        		localStorageService.remove('table_pl_' + $scope.current_season_year + '');
-        		localStorageService.remove('positions_for_team_' + $scope.current_season_year + '');
-        		localStorageService.remove('top_five_match_data_' + $scope.current_season_year + '');
-
-        		//add the current table of the Premier League
-        		localStorageService.add('table_pl_' + $scope.selected_season_year + '', response.data);
-
-            	//get new match data because there is an extra match played
-            	teams_match_data = $scope.loadMatchDataForTeams(response.data, 'premier-league');
-
-        	} else {
-        		//fetch match data from our local storage table since there isnt an extra match played
-        		teams_match_data = $scope.loadMatchDataForTeams(local_storage_table.data, 'premier-league');
-        	}
-
-        	return teams_match_data;
-	    }
 
 	    $scope.updateMatchesPlayedTicker = function() {
 	        var i = ($scope.matches_played - 1);
@@ -303,31 +293,26 @@ angular.module('footballVis.controllers', []).
 			//make sure the teams are indexed by their position on the league
 			$scope.sortTeamSequence(formatted_top_five_with_goal_minutes);
 
-			//transfer unordered unformatted goal minutes to a filtered formatted goal minutes array
-			$scope.makeFormattedTopFiveWithGoalMinutes(formatted_top_five_with_goal_minutes, unformatted_top_five_with_goal_minutes);
-
-			return formatted_top_five_with_goal_minutes;
-		};
-
-		$scope.makeFormattedTopFiveWithGoalMinutes = function(formatted_top_five_with_goal_minutes, unformatted_top_five_with_goal_minutes) {
-			_.each(formatted_top_five_with_goal_minutes, function(formatted_team_goal_minutes, index){
+			//this should also be in a diff function
+			_.each(formatted_top_five_with_goal_minutes, function(form_team_goal_minutes, index){
 				//cache the formatted one because we wont have access in the next function
-				var _formatted_team_goal_minutes = formatted_team_goal_minutes;
+				var formatted_goal_minutes_team = form_team_goal_minutes;
 
 				_.each(unformatted_top_five_with_goal_minutes, function(unf_team_goal_minutes, index) {
-					if(_formatted_team_goal_minutes.key === unf_team_goal_minutes.team) {
+					if(formatted_goal_minutes_team.key === unf_team_goal_minutes.team) {
 						_.each(unf_team_goal_minutes.goal_minutes, function(goal, index){
 							//calculate the chance of a goal
-							_formatted_team_goal_minutes.values.push(
+							formatted_goal_minutes_team.values.push(
 								[ goal.index, Math.round( (goal.goals_for_minute.length / $scope.matches_played) * 100 )]
 							);
 						});
 					}
 				});
 			});
-		}
 
-		//this sorts the sequence of the object. get's messed up by asyncness
+			return formatted_top_five_with_goal_minutes;
+		};
+
 		$scope.sortTeamSequence = function(formatted_top_five_with_goal_minutes) {
 			var _scope = $scope;
 			formatted_top_five_with_goal_minutes.sort(function(a,b){
@@ -338,7 +323,6 @@ angular.module('footballVis.controllers', []).
 			});
 		}
 
-		//generic chart render function, elem is only needed once
 		$scope.renderChartWithData = function(data, elem) {
 			var selected_svg_elem,
 				_scope = $scope;
@@ -374,33 +358,22 @@ angular.module('footballVis.controllers', []).
 		$scope.switchHomeAwayLeagueData = function(type, status) {
 			var change_to_match_type_status;
 
-			//a lot of if else for checks whether certain inputs are checked
 			if($scope.home_status === 'true' && $scope.away_status === 'false') {
-
 				change_to_match_type_status = 1;
-				$scope.set_match_type_heading_text = 'a home match';
-
+				$scope.set_match_type_heading_text = 'an away match';
 			} else if($scope.away_status === 'true' && $scope.home_status === 'false') {
-
 				change_to_match_type_status = 2;
 				$scope.set_match_type_heading_text = 'an away match';
-
 			} else if($scope.away_status === 'false' && $scope.home_status === 'false') {
 
 				if($scope.current_match_type_status == 1) {
-
-					$scope.set_match_type_heading_text = 'an away match';
 					change_to_match_type_status = 2;
 					$("#away_filter").prop('checked', true);
 					$scope.away_status = 'true';
-
 				} else {
-
 					change_to_match_type_status = 1;
-					$scope.set_match_type_heading_text = 'a home match';
 					$("#home_filter").prop('checked', true);
 					$scope.home_status = 'true';
-
 				}
 
 			} else {
@@ -432,7 +405,6 @@ angular.module('footballVis.controllers', []).
 
 			var _scope = $scope;
 
-			//load the data again with another year
 			$scope.initDataLoading(year).then(function(top_five_match_data){
 				var data = _scope.generateGraphDataForTopFiveMatchData(top_five_match_data);
 				_scope.renderChartWithData(data);

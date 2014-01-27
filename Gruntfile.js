@@ -13,6 +13,7 @@ module.exports = function(grunt) {
                     'app/angular/angular-route.js',
                     'app/lib/underscore.js',
                     'app/lib/nvd3/nv.d3.js',
+                    'app/lib/jquery.flipcountdown.js',
                     'app/js/app.js',
                 ],
                 dest: 'app/build/js/production.js',
@@ -72,13 +73,13 @@ module.exports = function(grunt) {
               spawn: false,
             }
           },
-          // images: {
-          //   files: ['images/**/*.{png,jpg,gif}', 'images/*.{png,jpg,gif}'],
-          //   tasks: ['imagemin'],
-          //   options: {
-          //     spawn: false,
-          //   }
-          // }
+          images: {
+            files: ['app/img/*.{png,jpg,gif}', 'app/images/*.{png,jpg,gif}'],
+            tasks: ['imagemin'],
+            options: {
+              spawn: false,
+            }
+          }
         },
         connect: {
           server: {
@@ -94,6 +95,6 @@ module.exports = function(grunt) {
     require('load-grunt-tasks')(grunt);
 
     // 4. Where we tell Grunt what to do when we type "grunt" into the terminal.
-    grunt.registerTask('production', ['concat', 'uglify', 'cssmin', 'autoprefixer']);
+    grunt.registerTask('production', ['concat', 'uglify', 'cssmin']);
     grunt.registerTask('dev', ['connect', 'watch']);
 };
