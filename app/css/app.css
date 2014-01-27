@@ -25,6 +25,7 @@ input[type=checkbox] {
   h1 {
     margin-top: 5px;
     text-align: center;
+    font-size: 1.8em;
   }
 
   h1 #match_type {
@@ -67,7 +68,7 @@ input[type=checkbox] {
   #half_time {
     display: inline-block;
     margin-top: -90px;
-    margin-left: 48%;
+    margin-left: 48.2%;
   }
 
 
@@ -78,17 +79,51 @@ input[type=checkbox] {
   padding-left: -30px;
 }
 
-  #center_header h2{
-     margin-bottom: 8px;
-     margin-left: -20px;
+  #season {
+    margin: 0 auto;
+    margin-bottom: 10px;
+    width: 200px;
+    height: 35px;
+    overflow: hidden;
+    background: url('http://s24.postimg.org/lyhytocf5/dropdown.png') no-repeat right #FEFEFE;
+    border: #DEDEDE 1px solid;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: inset 0px 0px 10px 1px #FEFEFE;
+    box-shadow: inset 0px 0px 10px 1px #FEFEFE;
+   }
+
+  #season select {
+    font-family: "Quattrocento", serif !important;
+    font-size: 17px;
+    background: transparent;
+    width: 195px;
+    border: 0;
+    border-radius: 0;
+    height: 35px;
+    -webkit-appearance: none;
+  }
+
+  #season select:focus {
+    outline: none;
+  }
+  #center_header #matches_played_wrapper {
+    width: 78px;
+    margin: 0 auto;
   }
 
   #center_header #matches_played {
-  font-size: 16px;
+    font-size: 1.5em;
+    float: left;
+    margin-top: 8px;
+    margin-right: 5px;
+  }
+
+  #center_header #matches_played_ticker {
+    float: left;
   }
 
   #center_header #calendar_img {
-    margin-bottom: -8px;
   }
 
 #left_header {
